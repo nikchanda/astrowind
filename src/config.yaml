@@ -1,6 +1,6 @@
 site:
-  name: AstroWind
-  site: 'https://astrowind.vercel.app'
+  name: Nik Chanda
+  site: 'https://nikchanda.com'
   base: '/'
   trailingSlash: false
 
@@ -9,14 +9,14 @@ site:
 # Default SEO metadata
 metadata:
   title:
-    default: AstroWind
-    template: '%s — AstroWind'
-  description: "\U0001F680 Suitable for Startups, Small Business, Sass Websites, Professional Portfolios, Marketing Websites, Landing Pages & Blogs."
+    default: Nik Chanda - Servant Leader with an Emphasis in Technology
+    template: '%s — Nik Chanda'
+  description: 'Nik Chanda - Servant Leader with an Emphasis in Technology'
   robots:
     index: true
     follow: true
   openGraph:
-    site_name: AstroWind
+    site_name: NikChanda.com
     images:
       - url: '~/assets/images/default.png'
         width: 1200

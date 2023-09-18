@@ -1,7 +1,17 @@
 ---
 import { SITE } from '~/utils/config';
+
+import { Image } from 'astro:assets';
+import logoIcon from '~/assets/images/nikchanda-thumbnail.jpeg';
 ---
 
-<span class="self-center ml-2 rtl:ml-0 rtl:mr-2 text-2xl md:text-xl font-bold text-gray-900 whitespace-nowrap dark:text-white">
-  🚀 {SITE?.name}
+<span
+  class="self-center ml-2 rtl:ml-0 rtl:mr-2 text-2xl md:text-xl font-bold text-gray-900 whitespace-nowrap dark:text-white"
+>
+  <div class="avatar">
+    <div class="w-9 rounded-full mr-2">
+      <Image src={logoIcon} alt={`Thumbnail image of ${SITE?.name}`} style={`display:inline;`} />
+    </div>
+  </div>
+  {SITE?.name}
 </span>
