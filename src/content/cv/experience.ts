@@ -34,31 +34,37 @@ const exp_synqy = {
       cv: ['director', 'cto'],
       desc: 'Implemented Agile, DevOps, and best practices in software engineering, improving productivity, reducing time-to-market, and improving code quality and testing.',
       link: '',
+      topics: ['summary'],
     },
     {
       cv: ['director', 'cto'],
       desc: 'Used a data-driven approach to make product development and strategic decisions, leading to improved user experiences and business outcomes.',
       link: '',
+      topics: ['summary'],
     },
     {
       cv: ['director', 'cto'],
       desc: 'Evolved the technology stack, tools, and procedures to solve consumer pain points and improve the overall technology infrastructure of the company.',
       link: '',
+      topics: ['summary'],
     },
     {
       cv: ['director', 'cto'],
       desc: 'Opened an Austin office to optimize leadership and better manage engineering teams.',
       link: '',
+      topics: ['summary'],
     },
     {
       cv: ['director', 'cto'],
       desc: 'Lead through the challenges of scaling, both in terms of user growth and team growth.',
       link: '',
+      topics: ['summary'],
     },
     {
       cv: ['director', 'cto'],
       desc: 'Successfully secured funding for the startup, demonstrating the ability to sell the vision and strategy of the company to investors.',
       link: '',
+      topics: ['summary'],
     },
   ],
 };
@@ -81,16 +87,19 @@ const exp_sequoia = {
       cv: ['director', 'cto'],
       desc: 'Lead the development of strategic partnerships with Carrier corporation and customers, driving business growth and customer satisfaction.',
       link: '',
+      topics: ['summary'],
     },
     {
       cv: ['director', 'cto'],
       desc: "Set the technology strategy of the company, selecting the right tools, technologies, and architectures to support the company's goals.",
       link: '',
+      topics: ['summary'],
     },
     {
       cv: ['director', 'cto'],
       desc: 'Invented syndication technology that grew customer base by 3,000+ B2B customers, and supported the successful recapitalization and acquisition of the company.',
       link: '',
+      topics: ['summary'],
     },
   ],
 };
@@ -115,6 +124,7 @@ const exp_tachometry = {
       cv: ['director', 'cto'],
       desc: 'Developed business, gathered requirements, architected and staffed the development and delivery of over 200 enterprise and government software projects.',
       link: '',
+      topics: ['summary'],
     },
   ],
 };

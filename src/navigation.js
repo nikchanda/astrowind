@@ -52,6 +52,8 @@ export const cvHeaderData = {
   actions: [{ text: 'Download', href: 'https://github.com/onwidget/astrowind', target: '_blank' }],
 };
 
+export const headerData = cvHeaderData;
+
 export const footerData = {
   links: [
     {
