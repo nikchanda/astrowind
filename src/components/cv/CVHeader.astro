@@ -5,14 +5,9 @@ import SectionNav from '~/components/widgets/SectionNav.astro';
 const { id = 'cvheader', title = '', links = [], downloads = [] } = Astro.props;
 ---
 
-<section
-  id={id}
-  class="mx-auto w-full border-b border-gray-50/0 transition-[opacity] ease-in-out"
-  style="position:sticky;top:90px;z-index:50"
->
-  <div class="absolute inset-0"></div>
-  <header class="">
-    <Headline title={title} />
-    <SectionNav links={links} />
-  </header>
-</section>
+<header id={id} class="text-center sticky top-14 z-40">
+  <h1 class="font-bold font-heading leading-tighter tracking-tighter text-heading text-3xl lg:text-4xl mb-2">
+    {title}
+  </h1>
+  <SectionNav links={links} />
+</header>

@@ -1,117 +1,51 @@
 import { getPermalink, getBlogPermalink, getAsset } from './utils/permalinks';
 
-export const headerData = {
+export const cvHeaderData = {
   links: [
     {
-      text: 'Homes',
+      text: 'About',
+      href: '/',
+    },
+    {
+      text: 'Resume',
       links: [
         {
-          text: 'SaaS',
-          href: getPermalink('/homes/saas'),
+          text: 'Overview',
+          href: getPermalink('/cv/welcome'),
         },
         {
-          text: 'Startup',
-          href: getPermalink('/homes/startup'),
+          text: 'Chief Technology Officer (CTO)',
+          href: getPermalink('/cv/cto'),
         },
         {
-          text: 'Mobile App',
-          href: getPermalink('/homes/mobile-app'),
+          text: 'VP Software Engineering',
+          href: getPermalink('/cv/vp'),
         },
         {
-          text: 'Personal',
-          href: getPermalink('/homes/personal'),
+          text: 'Director Software Engineering',
+          href: getPermalink('/cv/director'),
+        },
+        {
+          text: 'Senior Software Engineer',
+          href: getPermalink('/cv/senior-fullstack'),
         },
       ],
     },
     {
-      text: 'Pages',
+      text: 'Discussions',
       links: [
         {
-          text: 'Features (Anchor Link)',
-          href: getPermalink('/#features'),
-        },
-        {
-          text: 'Services',
-          href: getPermalink('/services'),
-        },
-        {
-          text: 'Pricing',
-          href: getPermalink('/pricing'),
-        },
-        {
-          text: 'About us',
-          href: getPermalink('/about'),
-        },
-        {
-          text: 'Contact',
-          href: getPermalink('/contact'),
-        },
-        {
-          text: 'Terms',
-          href: getPermalink('/terms'),
-        },
-        {
-          text: 'Privacy policy',
-          href: getPermalink('/privacy'),
-        },
-      ],
-    },
-    {
-      text: 'Landing',
-      links: [
-        {
-          text: 'Lead Generation',
-          href: getPermalink('/landing/lead-generation'),
-        },
-        {
-          text: 'Long-form Sales',
-          href: getPermalink('/landing/sales'),
-        },
-        {
-          text: 'Click-Through',
-          href: getPermalink('/landing/click-through'),
-        },
-        {
-          text: 'Product Details (or Services)',
-          href: getPermalink('/landing/product'),
-        },
-        {
-          text: 'Coming Soon or Pre-Launch',
-          href: getPermalink('/landing/pre-launch'),
-        },
-        {
-          text: 'Subscription',
-          href: getPermalink('/landing/subscription'),
-        },
-      ],
-    },
-    {
-      text: 'Blog',
-      links: [
-        {
-          text: 'Blog List',
+          text: 'Recent Discussions',
           href: getBlogPermalink(),
         },
         {
-          text: 'Article',
-          href: getPermalink('get-started-website-with-astro-tailwind-css', 'post'),
-        },
-        {
-          text: 'Article (with MDX)',
-          href: getPermalink('markdown-elements-demo-post', 'post'),
-        },
-        {
-          text: 'Category Page',
-          href: getPermalink('tutorials', 'category'),
-        },
-        {
-          text: 'Tag Page',
+          text: 'Astro',
           href: getPermalink('astro', 'tag'),
         },
       ],
     },
     {
-      text: 'Widgets',
+      text: 'Projects & Case Studies',
       href: '#',
     },
   ],
@@ -180,4 +114,14 @@ export const footerData = {
     <span class="w-5 h-5 md:w-6 md:h-6 md:-mt-0.5 bg-cover mr-1.5 rtl:mr-0 rtl:ml-1.5 float-left rtl:float-right rounded-sm bg-[url(https://onwidget.com/favicon/favicon-32x32.png)]"></span>
     Made by <a class="text-blue-600 hover:underline dark:text-gray-200" href="https://onwidget.com/"> onWidget</a> · All rights reserved.
   `,
+};
+
+export const cvSectionData = {
+  links: [
+    { text: 'Summary', href: '#summary', icon: 'mdi:account' },
+    { text: 'Experience', href: '#experience' },
+    { text: 'Education', href: '#education' },
+    { text: 'Certificates', href: '#certificates' },
+    { text: 'Skills', href: '#skills' },
+  ],
 };

@@ -1,16 +1,5 @@
 ---
-import Layout from '~/layouts/PageLayout.astro';
-import Header from '~/components/widgets/Header.astro';
-import CVHeader from '~/components/cv/CVHeader.astro';
-import CVExperience from '~/components/cv/CVExperience.astro';
-import CVEducation from '~/components/cv/CVEducation.astro';
-import Content from '~/components/widgets/Content.astro';
-import Steps from '~/components/widgets/Steps.astro';
-import Features3 from '~/components/widgets/Features3.astro';
-
-import { cvHeaderNav, cvSectionNav } from '~/utils/navigation';
-const header = cvHeaderNav();
-const section = cvSectionNav();
+import Layout from '~/layouts/CVLayout.astro';
 
 const metadata = {
   title: 'Director of Software Engineering',
@@ -19,62 +8,7 @@ const metadata = {
 ---
 
 <Layout metadata={metadata}>
-  <Fragment slot="announcement"></Fragment>
-
-  <Fragment slot="header">
-    <Header links={header.links} actions={header.actions} isSticky showToggleTheme />
+  <Fragment slot="summary">
+    <p>hello, world</p>
   </Fragment>
-
-  <CVHeader title={metadata.title} links={section.links} isSticky />
-
-  <CVExperience cv={metadata.slug} />
-  <CVEducation cv={metadata.slug} />
-
-  <section id="skills">
-    <!-- Features3 Widget ************** -->
-    <Features3
-      title="Skills"
-      subtitle="Discover the proficiencies that allow me to bring imagination to life through design."
-      columns={3}
-      defaultIcon="tabler:point-filled"
-      items={[
-        {
-          title: 'Graphic design',
-          description: 'Proficient in crafting visually appealing designs that convey messages effectively.',
-        },
-        {
-          title: 'Branding and identity',
-          description: 'Skilled at developing cohesive brand identities, including logos and brand guidelines.',
-        },
-        {
-          title: 'User-centered design',
-          description: 'Experienced in creating user-friendly interfaces and optimizing user experiences.',
-        },
-        {
-          title: 'Adobe Creative Suite',
-          description: 'Skilled in using Photoshop, Illustrator, and InDesign to create and edit visual elements.',
-        },
-        {
-          title: 'Typography',
-          description: 'Adept in selecting and manipulating typefaces to enhance design aesthetics.',
-        },
-        {
-          title: 'Color theory',
-          description: 'Proficient in using color to evoke emotions and enhance visual harmony.',
-        },
-        {
-          title: 'Print and digital design',
-          description: 'Knowledgeable in designing for both print materials and digital platforms.',
-        },
-        {
-          title: 'Attention to detail',
-          description: 'Diligent in maintaining precision and quality in all design work.',
-        },
-        {
-          title: 'Adaptability',
-          description: 'Quick to adapt to new design trends, technologies, and client preferences.',
-        },
-      ]}
-    />
-  </section>
 </Layout>

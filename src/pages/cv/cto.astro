@@ -1,0 +1,37 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import Header from '~/components/widgets/Header.astro';
+import CVHeader from '~/components/cv/CVHeader.astro';
+import Content from '~/components/widgets/Content.astro';
+import CVExperience from '~/components/cv/CVExperience.astro';
+import CVEducation from '~/components/cv/CVEducation.astro';
+import CVSkills from '~/components/cv/CVSkills.astro';
+
+import { cvHeaderNav, cvSectionNav } from '~/utils/navigation';
+const header = cvHeaderNav();
+const section = cvSectionNav();
+
+const metadata = {
+  title: 'Chief Technology Officer (CTO)',
+  slug: 'cto',
+};
+---
+
+<Layout metadata={metadata}>
+  <Fragment slot="announcement"></Fragment>
+
+  <Fragment slot="header">
+    <Header links={header.links} actions={header.actions} isSticky />
+  </Fragment>
+
+  <CVHeader title={metadata.title} links={section.links} isSticky />
+
+  <Content columns={2} id="summary">
+    <Fragment slot="col1">Hello</Fragment>
+    <Fragment slot="col2">World</Fragment>
+  </Content>
+
+  <CVExperience cv={metadata.slug} />
+  <CVEducation cv={metadata.slug} />
+  <CVSkills cv={metadata.slug} />
+</Layout>

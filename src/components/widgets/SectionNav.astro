@@ -4,11 +4,7 @@ import { Icon } from 'astro-icon';
 const { id = 'sectionnav', links = [], actions = [] } = Astro.props;
 ---
 
-<nav
-  class="sticky items-center w-full md:w-auto hidden md:flex text-default overflow-y-auto overflow-x-hidden md:overflow-y-visible md:overflow-x-auto md:mx-5"
-  aria-label="Section Navigation"
-  {...id ? { id } : {}}
->
+<nav class="w-screen" aria-label="Section Navigation" {...id ? { id } : {}}>
   <ul class="menu bg-base-200 lg:menu-horizontal rounded-box">
     {
       links.map(({ text, href, icon }) => (

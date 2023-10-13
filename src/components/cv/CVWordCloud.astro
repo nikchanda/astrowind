@@ -1,0 +1,64 @@
+---
+import CVWordCloudControl from '~/components/cv/CVWordCloudControl.svelte';
+import { technologies } from '~/content/cv/skills';
+
+const formatAlias = (src) => {
+  return src.replaceAll(' ', '').replaceAll('/', '-').toLowerCase();
+};
+
+const getStyleRules = () => {
+  return '';
+};
+
+const rand = Math.floor(Math.random() * 1000);
+
+
+
+const { id = `wc${rand}`, rtl=false } = Astro.props;
+
+const colClassCloud = 'tag-cloud flex justify-center flex-wrap gap-2 p-4 max-w-sm mx-auto my-4';
+const colClassDetail = 'detail-wrapper'
+---
+
+<Fragment>
+  <div id={id} class="wc-root relative mx-auto px-4 md:px-6 pb-6 m-0 text-default max-w-6xl">
+    <h3 class="text-muted text-xl mt-0 mb-4">Tools & Technologies</h3>
+    <div class="grid grid-cols-2 gap-3">
+      <div class=`flex col-span-1 md:gap-16 ${rtl ? 'flex-row-reverse' : ''}`>
+        <div class={colClassCloud}>
+          { 
+            technologies.map((item, index) => (
+              <button class=`tag px-2 py-1 rounded bg-gray-200 text-gray-700 text-sm hover:bg-gray-300 transition duration-200 ease-in-out ${index==0 ? 'selected' : ''}` data-wc-key={formatAlias(item.label)}>
+                {item.label}
+              </button>
+            ))
+          }
+        </div>
+        <div class={colClassDetail}>
+          {
+            technologies.map((item, index) => (
+              <div class={`absolute detail wcd-${formatAlias(item.label)} ${index==0 ? 'selected' : ''}`}>
+                <h4 class="text-xl font-semibold">{item.label}</h4>
+                <p>{item.desc}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+    <CVWordCloudControl client:only="svelte" root={id} />
+  </div>
+</Fragment>
+
+<style>
+  .wc-root .detail-wrapper .detail {
+    display: none;
+  }
+  .wc-root .detail-wrapper .detail.selected {
+    display: unset;
+  }
+  .wc-root button.selected {
+    background-color: rgb(149,151,155);
+    color:rgb(255,255,255);
+  }
+</style>

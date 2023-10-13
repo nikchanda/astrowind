@@ -1,1 +1,111 @@
-export const patents = [];
+export const patents = [
+  {
+    number: 'US-11587127-B2',
+    title: 'Method and system for managing content of digital brand assets on the internet',
+    inventor: 'Chanda; Nikolaus et al.',
+    date: '2023-02-21',
+    desc: 'This patent provides a new digital system that helps brand owners easily create, control, and share smart brand assets on different websites, while also allowing brand partners to modify these assets to meet their specific needs, ensuring that the brand is presented effectively and appropriately online.',
+  },
+  {
+    number: 'US-11367111-B2',
+    title: 'Method and system for deploying arrangements of payloads based upon engagement of website visitors',
+    date: '2022-06-21',
+    inventor: 'Chanda; Nikolaus et al.',
+    desc: 'This patent presents a digital system that lets brand owners easily create, manage, and analyze online brand content, while also smartly adjusting where and how it’s shown on various websites based on numerous factors like user behavior and location. Essentially, it ensures that the brand materials are not only shared broadly online but are also displayed in a way that best fits each platform and audience.',
+  },
+  {
+    number: 'US-11361348-B2',
+    title: 'Method and system for increasing visibility of digital brand assets',
+    date: '2022-06-14',
+    inventor: 'Chanda; Nikolaus et al.',
+    desc: 'This patent presents a new digital system that helps distribute brand assets online and improves how they interact with search engines by using a unique tag for each asset. In simple terms, when a search engine tries to explore (or "crawl") a web page with a brand asset, the system directs that exploration to a special server, ensuring the asset’s details (like location or user-related data) help it get properly listed in search engine results.',
+  },
+  {
+    number: 'US-11354708-B2',
+    title: 'Method and system for updating the presentation of digital brand assets',
+    date: '2022-06-07',
+    inventor: 'Chanda; Nikolaus et al.',
+    desc: 'The patent brings innovation by introducing a digital brand asset system that not only disseminates smart brand assets to numerous web servers but also monitors interactions with those assets on the servers to generate performance reports for brand owners. Significantly, it takes a step further by utilizing the raw data from these reports to autonomically and dynamically modify the content based on feedback interpretation, ensuring the smart brand assets are continuously optimized and relevant in various digital environments.',
+  },
+  {
+    number: 'US-20220067794-A1',
+    title: 'METHOD AND SYSTEM FOR DEPLOYING ARRANGEMENTS OF PAYLOADS BASED UPON ENGAGEMENT OF WEBSITE VISITORS',
+    date: '2022-03-03',
+    inventor: 'Chanda; Nikolaus et al.',
+  },
+  {
+    number: 'US-11120482-B2',
+    title: 'Method and system for deploying arrangements of payloads based upon engagement of website visitors',
+    date: '2021-09-14',
+    inventor: 'Chanda; Nikolaus et al.',
+    desc: 'This patent offers a special digital system that helps brand owners easily manage their smart brand assets on different websites. It lets owners not only create and share these assets but also control how they appear based on different factors like past click rates and shopper behaviors, ensuring the brand is shown in a strategic, tailored way online.',
+  },
+  {
+    number: 'US-20210073870-A1',
+    title: 'METHOD AND SYSTEM FOR MANAGING CONTENT OF DIGITAL BRAND ASSETS ON THE INTERNET',
+    date: '2021-03-11',
+    inventor: 'Chanda; Nikolaus et al.',
+  },
+  {
+    number: 'US-10776833-B2',
+    title: 'Method and system for managing content of digital brand assets on the internet',
+    date: '2020-09-15',
+    inventor: 'Chanda; Nikolaus et al.',
+    desc: 'This patent introduces a digital system that gives brand owners strong control over making, managing, and tracking their smart brand assets on different websites. It helps centrally manage content, allows brand partners to adjust the content as needed, and makes sure the brand is consistently yet flexibly represented across various online platforms.',
+  },
+  {
+    number: 'US-20200258130-A1',
+    title: 'METHOD AND SYSTEM FOR INCREASING VISIBILITY OF DIGITAL BRAND ASSETS',
+    date: '2020-08-13',
+    inventor: 'Chanda; Nikolaus et al.',
+  },
+  {
+    number: 'US-20200258131-A1',
+    title: 'METHOD AND SYSTEM FOR UPDATING THE PRESENTATION OF DIGITAL BRAND ASSETS',
+    date: '2020-08-13',
+    inventor: 'Chanda; Nikolaus et al.',
+  },
+  {
+    number: 'US-10679259-B2',
+    title: 'Method and system for dynamic online digital brand assets',
+    date: '2020-06-09',
+    inventor: 'Chanda; Nikolaus et al.',
+    desc: 'The patent talks about a new digital system that helps brand owners create, manage, and make sure their brand content is shown properly on different websites by using certain guidelines. It has a smart feature where each piece of brand content has a special ID that search engines can recognize and list, and it can watch how users interact with the content to create reports. These reports help brand owners see how well their content is doing on different websites, combining creation, control, and analyzing how effective it is into one easy-to-use system.',
+  },
+  {
+    number: 'US-20180211289-A1',
+    title: 'METHOD AND SYSTEM FOR DEPLOYING ARRANGEMENTS OF PAYLOADS BASED UPON ENGAGEMENT OF WEBSITE VISITORS',
+    date: '2018-07-26',
+    inventor: 'Chanda; Nikolaus et al.',
+  },
+  {
+    number: 'US-9922349-B2',
+    title:
+      'Method and system for the distribution, maintenance, management, merchandising and analysis of digital brand assets on the internet',
+    date: '2018-03-20',
+    inventor: 'Chanda; Nikolaus et al.',
+    desc: 'This patent introduces a digital system that lets brand owners make, control, and share smart brand content on different websites, and it cleverly adjusts the content based on things like past click rates, shopper behaviors, and website locations. Essentially, it ensures that the digital brand content is not only shared but also smartly changed and shown in a way that’s most effective and targeted across the internet.',
+  },
+  {
+    number: 'US-20140201010-A1',
+    title: 'METHOD AND SYSTEM FOR DYNAMIC ONLINE DIGITAL BRAND ASSETS',
+    date: '2014-07-17',
+    inventor: 'Chanda; Nikolaus et al.',
+    desc: 'The innovative aspects of this patent revolve around a digital brand asset system that provides brand owners with extensive capabilities to manage and analyze smart brand assets across various websites. The system enables brand owners to dictate how these assets are presented by specifying brand guidelines tailored to different online environments. Notably, it incorporates unique identifications for smart brand assets, which facilitate their indexing by search engine crawlers, enhancing SEO efforts. Furthermore, the system monitors interaction between website visitors and the smart brand assets, allowing it to generate reports that help brand owners assess the effectiveness of their assets across different website servers, thereby providing insights and data for optimizing digital brand management.',
+  },
+  {
+    number: 'US-20140164098-A1',
+    title:
+      'METHOD AND SYSTEM FOR THE DISTRIBUTION, MAINTENANCE, MANAGEMENT, MERCHANDISING AND ANALYSIS OF DIGITAL BRAND ASSETS ON THE INTERNET',
+    date: '2014-06-12',
+    inventor: 'Chanda; Nikolaus et al.',
+    desc: 'This patent introduces an innovative digital brand asset system that provides brand owners comprehensive control and intelligent distribution of smart brand assets across various websites. The system centralizes the creation, management, and analysis of these assets through a single server, allowing content and presentation to adapt based on factors like previous click-through rates and aggregated shopper behaviors, thus ensuring a tailored online brand presence. It promotes strategic, data-informed asset distribution and allows for modifications according to the type and status of websites, enhancing brand visibility and consistency across multiple digital platforms while accommodating varied, specific needs and preventing display on blacklisted websites.',
+  },
+  {
+    number: '	US-20140164148-A1',
+    title: 'METHOD AND SYSTEM FOR MANAGING CONTENT OF DIGITAL BRAND ASSETS ON THE INTERNET',
+    date: '2014-06-12',
+    inventor: 'Chanda; Nikolaus et al.',
+    desc: 'This patent introduces a simple online system that helps brand owners make, manage, and control their digital brand content across different websites using one main server. Brand partners can also easily change the content to meet their needs, making sharing and controlling brand information straightforward and unified across the internet.',
+  },
+];

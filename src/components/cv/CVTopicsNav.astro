@@ -1,0 +1,32 @@
+---
+import { experienceTopics } from '~/content/cv/experience';
+
+
+const formatAlias = (src) => {
+  return src.replaceAll(' ', '').replaceAll('/', '-').toLowerCase();
+};
+
+const topics = experienceTopics;
+const rand = Math.floor(Math.random() * 1000);
+const { id = `tpc${rand}` } = Astro.props;
+---
+
+<Fragment>
+<ul id={id} class="topic-nav-menu w-full w-auto justify-center menu bg-base-200 lg:menu-horizontal rounded-box items-center">
+  <span>Filter By:</span>
+  {
+    topics.map((topic) => (
+      <button class="tag mx-2 px-2 py-1 rounded bg-white text-gray-700 text-sm hover:bg-gray-300 transition duration-200 ease-in-out" data-topic-key={formatAlias(topic.key)}>
+        {topic.label}
+      </button>
+    ))
+  }
+</ul>
+</Fragment>
+
+<style>
+  .topic-nav-menu button.selected {
+    background-color: rgb(149,151,155);
+    color:rgb(255,255,255);
+  }
+</style>

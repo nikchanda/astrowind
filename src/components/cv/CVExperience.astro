@@ -1,10 +1,10 @@
 ---
-import type { ResponseWithEncoding } from 'node_modules/astro/dist/core/endpoint';
-import { defineScriptVars } from 'astro/compiler-runtime';
+import CVTopicsNav from '~/components/cv/CVTopicsNav.astro';
 import Steps from '~/components/widgets/Steps.astro';
 import { experience } from '~/content/cv/experience';
+import CVTopicsNavControl from '~/components/cv/CVTopicsNavControl.svelte';
 
-const { cv } = Astro.props;
+const { cv = 'all', as } = Astro.props;
 
 const formatExpItems = (cv) => {
   let items = [];
@@ -15,8 +15,12 @@ const formatExpItems = (cv) => {
 
     desc += '<ul class="list-disc mt-4 ml-4">';
     for (const ac of row.accomplishments) {
-      if (ac.cv.indexOf(cv) > -1) {
-        desc += `<li class="mt-4">${ac.desc}</li>`;
+      if (cv=='all' || ac.cv.indexOf(cv) > -1) {
+        let classlist = `mt-4`;
+        for (const topic in ac.topics) {
+          classlist += ` topic-${ac.topics[topic]}`;
+        }
+        desc += `<li class="topic-item ${classlist}">${ac.desc}</li>`;
       }
     }
     desc += `</ul>`;
@@ -24,7 +28,7 @@ const formatExpItems = (cv) => {
     if (row.cases) {
       desc += '<footer class="mt-5"><ul class="text-sm">';
       for (const cs of row.cases) {
-        desc += `<li class="bg-gray-100 dark:bg-slate-700 inline-block mr-2 rtl:mr-0 rtl:ml-2 mb-2 py-0.5 px-2 lowercase font-medium">`;
+        desc += `<li class="bg-gray-100 dark:bg-slate-700 inline-block mr-2 rtl:mr-0 rtl:ml-2 mb-2 py-0.5 px-2 lowercase font-medium rounded-box">`;
         if (cs.link) {
           desc += `<a href=${row.link} class="text-muted dark:text-slate-300 hover:text-primary dark:hover:text-gray-200">${cs.name}</a>`;
         } else {
@@ -35,13 +39,27 @@ const formatExpItems = (cv) => {
       desc += '</ul></footer>';
     }
 
-    items.push({ title, description: desc, icon: 'tabler:briefcase' });
+    items.push({ title, description: desc, image: row.image, icon: 'tabler:briefcase' });
   }
 
   return items;
 };
 ---
 
-<section id="experience">
-  <Steps id="experience-widget-1" title="Professional Experience" items={formatExpItems(cv)} />
-</section>
+<div id="experience-wrapper" class="topic-summary">
+  <CVTopicsNav id="experience-topics-nav" />
+  <Steps id="experience-details" items={formatExpItems(cv)} as={as} />
+  <CVTopicsNavControl client:only root="experience-wrapper" />
+</div>
+
+<style is:global>
+  #experience-wrapper li {display:none}
+  #experience-wrapper.topic-summary li.topic-summary {display:list-item}
+  #experience-wrapper.topic-tech li.topic-tech {display:list-item}
+  #experience-wrapper.topic-lead li.topic-lead {display:list-item}
+  #experience-wrapper.topic-team li.topic-team {display:list-item}
+  #experience-wrapper.topic-business li.topic-business {display:list-item}
+  #experience-wrapper.topic-stakeholder li.topic-stakeholder {display:list-item}
+  #experience-wrapper.topic-change li.topic-change {display:list-item}
+  
+</style>

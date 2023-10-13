@@ -142,6 +142,14 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
             )
           }
         </div>
+        <a
+          class="text-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
+          aria-label="LinkedIn Profile"
+          href={`https://www.linkedin.com/in/nikchanda/`}
+          target="_linkedin"
+        >
+          <Icon name="tabler:brand-linkedin" class="w-5 h-5 text-blue-600" />
+        </a>
         {
           actions?.length ? (
             <span class="ml-4 rtl:ml-0 rtl:mr-4">
@@ -156,5 +164,4 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
       </div>
     </div>
   </div>
-  <slot name="subheader" />
 </header>

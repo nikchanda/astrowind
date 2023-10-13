@@ -46,14 +46,11 @@ export interface Post {
 
 export interface MetaData {
   title?: string;
+  slug?: string;
   ignoreTitleTemplate?: boolean;
-
   canonical?: string;
-
   robots?: MetaDataRobots;
-
   description?: string;
-
   openGraph?: MetaDataOpenGraph;
   twitter?: MetaDataTwitter;
 }
@@ -266,6 +263,7 @@ export interface Steps extends Headline, Widget {
   callToAction?: string | CallToAction;
   image?: string | Image;
   isReversed?: boolean;
+  as?: string;
 }
 
 export interface Content extends Headline, Widget {

@@ -1,0 +1,23 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import CVHeader from '~/components/cv/CVHeader.astro';
+import CVExperience from '~/components/cv/CVExperience.astro';
+import CVEducation from '~/components/cv/CVEducation.astro';
+import CVSkills from '~/components/cv/CVSkills.astro';
+
+import type { MetaData } from '~/types';
+
+export interface Props {
+  metadata?: MetaData;
+}
+
+const { metadata = {} } = Astro.props;
+---
+
+<Layout metadata={metadata}>
+  <CVHeader cv={metadata.slug} />
+  <slot name="summary" />
+  <CVExperience cv={metadata.slug} />
+  <CVEducation cv={metadata.slug} />
+  <CVSkills cv={metadata.slug} />
+</Layout>

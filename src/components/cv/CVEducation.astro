@@ -1,7 +1,7 @@
 ---
 import Steps from '~/components/widgets/Steps.astro';
 import { education, certification } from '~/content/cv/education';
-import { Icon } from 'astro-icon/components';
+import CVGridItems from './CVGridItems.astro';
 
 const { cv = '' } = Astro.props;
 const blogroot = `/blog/tag`;
@@ -16,12 +16,12 @@ const formatEduItems = (cv) => {
     if (row.department) {
       institution += `<br/>${row.department}`;
     }
-    let title = `${row.degree} in<br/>${row.subject}<br/><span class="font-normal">${institution}</span>`;
+    let title = `${row.degree}<br/><span class="text-muted">${row.subject}</span><br/><span class="font-normal"><a href=${row.link} target="_blank">${institution}</a></span>`;
     if (row.date) {
       title += `<br/><span class="text-sm font-normal">${row.date}</span>`;
     }
 
-    items.push({ title, icon: 'tabler:school' });
+    items.push({ title, image: row.image, icon: 'tabler:school' });
   }
   return items;
 };
@@ -31,35 +31,30 @@ const formatCertItems = (cv) => {
     if ('undefined' != typeof row.applies && row.applies.indexOf(cv) == -1) {
       continue;
     }
-    let title = `${row.title}<br/><span class="font-normal">${row.issuer}</span>`;
+    let title = `${row.title}<br/><span class="font-normal"><a href=${row.link} target="_blank">${row.issuer}</a></span>`;
     if (row.date) {
       title += `<br/><span class="text-sm font-normal">${row.date}</span>`;
     }
 
     let desc = '';
-    if (row.cases) {
+    if (row.link || row.blog) {
       desc = '<footer class="mt-5"><ul class="text-sm">';
       if (row.link) {
-        desc += `<li class="bg-gray-100 dark:bg-slate-700 inline-block mr-2 rtl:mr-0 rtl:ml-2 mb-2 py-0.5 px-2 lowercase font-medium"><a href=${row.link} target='_blank' class="text-muted dark:text-slate-300 hover:text-primary dark:hover:text-gray-200">certificate</a></li>`;
+        desc += `<li class="bg-gray-100 dark:bg-slate-700 inline-block mr-2 rtl:mr-0 rtl:ml-2 mb-2 py-0.5 px-2 lowercase font-medium rounded-box"><a href=${row.link} target='_blank' class="text-muted dark:text-slate-300 hover:text-primary dark:hover:text-gray-200">certificate</a></li>`;
       }
       if (row.blog) {
-        desc += `<li class="bg-gray-100 dark:bg-slate-700 inline-block mr-2 rtl:mr-0 rtl:ml-2 mb-2 py-0.5 px-2 lowercase font-medium"><a href="${blogroot}/${row.blog}" class="text-muted dark:text-slate-300 hover:text-primary dark:hover:text-gray-200">blog</a></li>`;
+        desc += `<li class="bg-gray-100 dark:bg-slate-700 inline-block mr-2 rtl:mr-0 rtl:ml-2 mb-2 py-0.5 px-2 lowercase font-medium rounded-box"><a href="${blogroot}/${row.blog}" class="text-muted dark:text-slate-300 hover:text-primary dark:hover:text-gray-200">blog</a></li>`;
       }
       desc += '</ul></footer>';
     }
 
-    items.push({ title, description: desc, icon: 'tabler:school' });
+    items.push({ title, description: desc, image: row.image, link: row.link, icon: 'tabler:school' });
   }
   return items;
 };
 ---
 
-<section id="education">
-  <Steps id="education-widget-1" title="Education" items={formatEduItems()} classes={{ container: 'max-w-3xl' }} />
-  <Steps
-    id="education-widget-2"
-    title="Certifications"
-    items={formatCertItems()}
-    classes={{ container: 'max-w-3xl' }}
-  />
-</section>
+<Fragment>
+  <CVGridItems title="University Studies" items={formatEduItems()} />
+  <CVGridItems title="Professional Certifications" items={formatCertItems()} />
+</Fragment>
