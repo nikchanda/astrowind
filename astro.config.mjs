@@ -80,5 +80,5 @@ export default defineConfig({
       },
     },
   },
-  adapter: vercel(),
+  adapter: vercel({ analytics: true }),
 });
