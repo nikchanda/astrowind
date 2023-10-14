@@ -11,7 +11,7 @@ const formatExpItems = (cv) => {
 
   for (const row of experience) {
     let title = `${row.title}<br/><span class="font-normal">${row.company}<span class="text-sm"> | ${row.location}</span></span><br/><span class="text-sm font-normal">${row.date}</span>`;
-    let desc = `<span class="text-black" >${row.description}</span>`;
+    let desc = `<span class="text-base" >${row.description}</span>`;
 
     desc += '<ul class="list-disc mt-4 ml-4">';
     for (const ac of row.accomplishments) {

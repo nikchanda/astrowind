@@ -12,11 +12,11 @@ const { id = `tpc${rand}` } = Astro.props;
 ---
 
 <Fragment>
-<ul id={id} class="topic-nav-menu w-full w-auto justify-center menu bg-base-200 lg:menu-horizontal rounded-box items-center">
-  <span>Filter By:</span>
+<ul id={id} class="topic-nav-menu w-full w-auto justify-center menu bg-neutral-200 lg:menu-horizontal rounded-box items-center">
+  <span class="text-gray-700">Filter By:</span>
   {
     topics.map((topic) => (
-      <button class="tag mx-2 px-2 py-1 rounded bg-white text-gray-700 text-sm hover:bg-gray-300 transition duration-200 ease-in-out" data-topic-key={formatAlias(topic.key)}>
+      <button class="tag mx-2 px-2 py-1 rounded bg-base-focuss text-gray-700 text-sm hover:bg-gray-300 transition duration-200 ease-in-out" data-topic-key={formatAlias(topic.key)}>
         {topic.label}
       </button>
     ))
