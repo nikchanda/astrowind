@@ -72,12 +72,12 @@ const exp_synqy = {
 
 const exp_rpv = {
   company: 'Red Poppy Ventures',
-  title: 'Managing Member',
+  title: 'Mentor, Managing Member',
   location: 'Georgetown, TX',
   date: '2019 - Present',
   image: logoRPV,
   description:
-    'Red Poppy Ventures is a virtual incubator, empowering start-up businesses to meet their full potential through technology and business support.',
+    'Red Poppy Ventures is a virtual incubator, empowering start-up businesses to meet their full potential through mentoring, investment, technology and business support.',
   applies: ['director', 'cto', 'board'],
   cases: [
     { name: 'Advanced Fuel Dyanmics', link: 'https://www.advancedfueldynamics.com' },
