@@ -1,17 +1,42 @@
 ---
+import { Icon } from 'astro-icon/components';
 import CVWordCloudControl from '~/components/cv/CVWordCloudControl.svelte';
-import { technologies } from '~/content/cv/skills';
+
 
 const formatAlias = (src) => {
   return src.replaceAll(' ', '').replaceAll('/', '-').toLowerCase();
 };
 
+const getItemTitle = (item) => {
+  return 'undefined' != typeof item.title ? item.title : item.label;
+}
+
 const getStyleRules = () => {
   return '';
 };
 
+const getIconColor = (index) => {
+  const colors = iconColors.length;
+  const modIndex = index%colors;
+  const color = iconColors[modIndex];
+  return `${color.bg} ${color.text}`;
+}
+
+const iconColors = [
+  {bg:'bg-cyan-400',text:'text-white'},
+  {bg:'bg-indigo-500',text:'text-white'},
+  {bg:'bg-rose-500',text:'text-white'},
+  {bg:'bg-slate-600',text:'text-white'},
+  {bg:'bg-violet-500',text:'text-white'},
+  
+  {bg:'bg-neutral-400',text:'text-white'},
+  {bg:'bg-teal-400',text:'text-white'},  
+  {bg:'bg-lime-400',text:'text-white'},
+  
+];
+
 const rand = Math.floor(Math.random() * 1000);
-const { id = `wc${rand}`, rtl=false } = Astro.props;
+const { id = `wc${rand}`, title='', items=[], rtl=false } = Astro.props;
 
 const colClassCloud = 'tag-cloud flex justify-center flex-wrap gap-2 p-4 max-w-sm mx-auto my-4';
 const colClassDetail = 'detail-wrapper'
@@ -19,12 +44,12 @@ const colClassDetail = 'detail-wrapper'
 
 <Fragment>
   <div id={id} class="wc-root relative mx-auto px-4 md:px-6 pb-6 m-0 text-default max-w-6xl">
-    <h3 class="text-muted text-xl mt-0 mb-4">Tools & Technologies</h3>
+    <h3 class="text-muted text-xl mt-0 mb-4">{title}</h3>
     <div class="grid grid-cols-2 gap-3">
       <div class=`flex col-span-1 md:gap-16 ${rtl ? 'flex-row-reverse' : ''}`>
         <div class={colClassCloud}>
           { 
-            technologies.map((item, index) => (
+            items.map((item, index) => (
               <button class=`tag px-2 py-1 rounded bg-neutral-200 text-neutral-focus text-sm hover:bg-gray-300 transition duration-200 ease-in-out ${index==0 ? 'selected' : ''}` data-wc-key={formatAlias(item.label)}>
                 {item.label}
               </button>
@@ -33,10 +58,34 @@ const colClassDetail = 'detail-wrapper'
         </div>
         <div class={colClassDetail}>
           {
-            technologies.map((item, index) => (
+            items.map((item, index) => (
               <div class={`absolute detail wcd-${formatAlias(item.label)} ${index==0 ? 'selected' : ''}`}>
-                <h4 class="text-xl font-semibold">{item.label}</h4>
-                <p>{item.desc}</p>
+                <h4 class="text-xl font-semibold">{getItemTitle(item)}</h4>
+                <div set:html={item.desc}></div>
+                
+                {item.icons && 
+                  <div class={`badges flex justify-start space-x-4 font-mono leading-6 rounded-lg`}>
+                    {item.icons.map((icon,index)=>(
+
+                      <a href={(icon.link && icon.link.href) ? icon.link.href : 'javascript:return(0);'} target={(icon.link && icon.link.target) ? icon.link.target : '_self'} class={!icon.link || !icon.link.href ? 'cursor-default' : ''}>
+                        <div class="flex items-center justify-center mt-2 ">
+                          <div class="flex flex-col items-center">
+                              {icon.image &&
+                                <div class={`badge w-12 h-12 text-white text-sm font-bold mask mask-hexagon flex items-center justify-center ${getIconColor(index)}`}>
+                                  {icon.image.type == 'icon' &&
+                                    <Icon class="w-6 h-6 " name={icon.image.src} />
+                                  }
+                                </div>
+                              }
+                              <div ><span class="text-xs font-normal">{icon.label}</span></div>
+                          </div>
+                        </div>
+                      </a>
+
+                    ))}
+                  </div>
+                }
+
               </div>
             ))
           }
@@ -58,4 +107,18 @@ const colClassDetail = 'detail-wrapper'
     background-color: rgb(91, 92, 93);
     color:rgb(255,255,255);
   }
+
+/*
+  .wc-root .badges a.cursor-default .badge {
+    border-color: transparent;
+  }
+
+  .wc-root .badges a:hover {
+    opacity: 0.8;
+  }
+
+  .wc-root .badges a.cursor-default:hover {
+    opacity: unset;
+  }
+*/
 </style>

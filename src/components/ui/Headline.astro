@@ -7,6 +7,7 @@ const {
   subtitle = await Astro.slots.render("subtitle"),
   tagline,
   classes = {},
+  collapsable = false
 } = Astro.props as Headline;
 
 const {
@@ -19,7 +20,7 @@ const {
 {
   (title || subtitle || tagline) && (
     <div
-      class={twMerge("mb-8 md:mx-auto md:mb-12 text-center", containerClass)}
+      class={twMerge(`mb-8 md:mx-auto md:mb-12 text-center ${collapsable ? 'collapse-title' : ''}`, containerClass)}
     >
       {tagline && (
         <p

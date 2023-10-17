@@ -102,6 +102,7 @@ export interface Headline {
   subtitle?: string;
   tagline?: string;
   classes?: Record<string, string>;
+  collapsable?: boolean;
 }
 
 interface TeamMember {
@@ -264,6 +265,7 @@ export interface Steps extends Headline, Widget {
   image?: string | Image;
   isReversed?: boolean;
   as?: string;
+  collapsable?: boolean;
 }
 
 export interface Content extends Headline, Widget {

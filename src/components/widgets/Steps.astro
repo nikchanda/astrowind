@@ -18,6 +18,7 @@ const {
   classes = {},
   bg = await Astro.slots.render('bg'),
   as,
+  collapsable = false,
 } = Astro.props as Steps;
 ---
 
@@ -28,13 +29,14 @@ const {
         title={title}
         subtitle={subtitle}
         tagline={tagline}
+        collapsable={collapsable}
         classes={{
           container: 'text-left rtl:text-right',
           title: 'text-3xl lg:text-4xl',
           ...((classes?.headline as {}) ?? {}),
         }}
       />
-      <Timeline items={items} classes={classes?.items as {}} />
+      <Timeline items={items} classes={classes?.items as {}} collapsable={collapsable}/>
     </div>
     {
       image && (

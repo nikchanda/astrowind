@@ -8,9 +8,10 @@ export interface Props {
   items?: Array<Item>;
   defaultIcon?: string;
   classes?: Record<string, string>;
+  collapsable?: boolean;
 }
 
-const { items = [], classes = {}, defaultIcon } = Astro.props as Props;
+const { items = [], classes = {}, defaultIcon, collapsable } = Astro.props as Props;
 
 const {
   container: containerClass = '',

@@ -1,0 +1,45 @@
+---
+const credits = [
+  { role: 'Scalable Web Framework', label: 'Astro', href: 'https://astro.build' },
+  { role: 'Component Framework', label: 'Svelte', href: 'https://svelte.dev/' },
+  { role: 'Digital Transformation', label: 'Preact', href: 'https://preactjs.com/' },
+  { role: 'CSS Framework', label: 'DaisyUI on TailwindCSS', href: 'https://daisyui.com/' },
+  { role: 'Reference Theme', label: 'Astrowind by onWidget', href: 'https://onwidget.com/' },
+  { role: 'Database / User Auth', label: 'Pocketbase', href: 'https://pocketbase.io/' },
+  { role: 'Favicon', label: 'Abdul-Aziz @ Flaticon', href: 'https://www.flaticon.com/free-icons/add-user' },
+];
+---
+
+<dialog id="credits-modal" class="modal modal-bottom sm:modal-middle bg-page">
+  <div class="modal-box">
+    <form method="dialog">
+      <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" style="line-height:0.3">✕</button>
+    </form>
+
+    <h3 class="font-bold text-lg">Open Source Credits</h3>
+    <p>This site is possible because of the hard work of many contributors to the open source community:</p>
+    <table class="table-auto text-sm mt-2">
+      <thead>
+        <th class="px-4 text-left">Site Role</th>
+        <th class="px-4 text-left">Attribution</th>
+      </thead>
+      <tbody>
+        {
+          credits.map(({ role, label, href }) => (
+            <tr>
+              <td class="px-4 text-left">{role}:</td>
+              <td class="px-4 text-left">
+                <a href={href} target="_blank">
+                  {label}
+                </a>
+              </td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+  <form method="dialog" class="modal-backdrop">
+    <button>close</button>
+  </form>
+</dialog>

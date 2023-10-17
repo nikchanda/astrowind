@@ -3,18 +3,16 @@ import Layout from '~/layouts/PageLayout.astro';
 import ContentSection from '~/components/widgets/ContentSection.astro';
 import Header from '~/components/widgets/Header.astro';
 import Hero from '~/components/widgets/Hero.astro';
-import Content from '~/components/widgets/Content.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import FeatureCarousel from '~/components/widgets/FeatureCarousel.astro';
 import CVExperience from '~/components/cv/CVExperience.astro';
 import CVEducation from '~/components/cv/CVEducation.astro';
 import CVSkills from '~/components/cv/CVSkills.astro';
 import CVRecognition from '~/components/cv/CVRecognition.astro';
-import Features3 from '~/components/widgets/Features3.astro';
-import Testimonials from '~/components/widgets/Testimonials.astro';
-import Steps from '~/components/widgets/Steps.astro';
+import CVContactModal from '~/components/cv/CVContactModal.astro';
 import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
 import { spaHeaderNav } from '~/utils/navigation';
+import CVAttributionModal from '~/components/cv/CVAttributionModal.astro';
 
 const header = spaHeaderNav();
 const metadata = {
@@ -33,7 +31,9 @@ const metadata = {
       id="about-hero"
       title="Nik Chanda"
       tagline="Agile Software Innovator & Servant Leader"
-      actions={[{ variant: 'primary', text: 'Contact', href: '/contact' }]}
+      actions={[
+        { variant: 'primary', text: 'Contact', onclick: `javascript:getElementById('contact-modal').showModal()` },
+      ]}
       as="subsection"
     >
       <Fragment slot="subtitle">
@@ -72,7 +72,7 @@ const metadata = {
   </ContentSection>
 
   <ContentSection id="skills" title="Skills, Tools & Technologies">
-    <CVSkills cv='cto' as="div" />
+    <CVSkills cv="cto" as="div" />
   </ContentSection>
 
   <ContentSection id="recognition" title="Patents & Recognition">
@@ -82,14 +82,8 @@ const metadata = {
   <ContentSection id="discussion" title="Discussion">
     <BlogLatestPosts
       id="blog"
-      title="Explore my insightful articles on my blog"
-      information={`Dive into a realm of design wisdom and creative inspiration, where you'll find invaluable insights, practical tips, and captivating narratives that elevate and enrich your creative journey.`}
-    >
-      <Fragment slot="bg">
-        <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-      </Fragment>
-    </BlogLatestPosts>
-
+      title={`<span class='text-muted text-xl mt-0 mb-4 font-normal'>Recent Articles</span>`}
+    />
     <CallToAction
       title="Let's get building together"
       subtitle="Ready to see how to move your team forward?"
@@ -97,13 +91,12 @@ const metadata = {
         {
           variant: 'primary',
           text: 'Contact',
-          href: '/',
+          onclick: `javascript:getElementById('contact-modal').showModal()`,
         },
       ]}
     />
   </ContentSection>
 
-  <style>
-    p {color:red;}
-  </style>
+  <CVContactModal />
+  <CVAttributionModal />
 </Layout>

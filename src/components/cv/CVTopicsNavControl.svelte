@@ -36,7 +36,3 @@
   
 </script>
 
-<style is:global>
-  #experience-wrapper li {display:none}
-  #experience-wrapper.topic-summary li.topic-summary {display:list-item}
-</style>

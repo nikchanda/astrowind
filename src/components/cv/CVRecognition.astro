@@ -1,12 +1,32 @@
 ---
-import CVGridItems from '~/components/cv/CVGridItems.astro';
+import CVWordCloud from '~/components/cv/CVWordCloud.astro';
 import Testimonials from '~/components/widgets/Testimonials.astro';
 
 import { patents } from '~/content/cv/awards';
 import { testimonials } from '~/content/cv/testimonials';
+
+const formatPatents = () => {
+  let items = [];
+  patents.map((pat, index) => {
+    let item = {
+      ...pat,
+      label: pat.number.trim(),
+      icons: [
+        {
+          label: 'Download PDF',
+          image: { type: 'icon', src: 'tabler:file-type-pdf' },
+          link: { href: `/pdf/${pat.number.trim()}.pdf`, target: '_blank' },
+        },
+      ],
+      desc: `<span class="text-muted">Publication Date: ${pat.date}</span><br/>${pat.desc}`,
+    };
+    items.push(item);
+  });
+  return items;
+};
 ---
 
-<CVGridItems mdCols="6" lgCols="6" title="US Software Utility Patents" items={patents} />
+<CVWordCloud title="US Software Utility Patents" items={formatPatents()} />
 
 <Testimonials
   title="Client testimonials"

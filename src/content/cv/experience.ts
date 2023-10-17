@@ -1,6 +1,7 @@
 import logoSYNQY from '~/assets/images/logo-synqy-q.svg';
 import logoSequoia from '~/assets/images/logo-sequoia.png';
 import logoTachometry from '~/assets/images/logo-tachometry.ico';
+import logoRPV from '~/assets/images/logo-rpv.png';
 
 const exp_synqy = {
   company: 'SYNQY Corporation',
@@ -69,6 +70,29 @@ const exp_synqy = {
   ],
 };
 
+const exp_rpv = {
+  company: 'Red Poppy Ventures',
+  title: 'Managing Member',
+  location: 'Georgetown, TX',
+  date: '2019 - Present',
+  image: logoRPV,
+  description:
+    'Red Poppy Ventures is a virtual incubator, empowering start-up businesses to meet their full potential through technology and business support.',
+  applies: ['director', 'cto', 'board'],
+  cases: [
+    { name: 'Advanced Fuel Dyanmics', link: 'https://www.advancedfueldynamics.com' },
+    { name: 'Generative AI for Web', link: '' },
+  ],
+  accomplishments: [
+    {
+      cv: ['director', 'cto'],
+      desc: 'Developed business, gathered requirements, architected and staffed the development and delivery of over 200 enterprise and government software projects.',
+      link: '',
+      topics: ['summary'],
+    },
+  ],
+};
+
 const exp_sequoia = {
   company: 'Sequoia Technologies',
   title: 'Chief Technology Officer (CTO)',
@@ -129,7 +153,7 @@ const exp_tachometry = {
   ],
 };
 
-export const experience = [exp_synqy, exp_sequoia, exp_tachometry];
+export const experience = [exp_synqy, exp_rpv, exp_sequoia, exp_tachometry];
 
 export const experienceTopics = [
   {

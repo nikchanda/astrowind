@@ -48,7 +48,7 @@ const formatExpItems = (cv) => {
 
 <div id="experience-wrapper" class="topic-summary">
   <CVTopicsNav id="experience-topics-nav" />
-  <Steps id="experience-details" items={formatExpItems(cv)} as={as} />
+  <Steps id="experience-details" items={formatExpItems(cv)} as={as} collapsable/>
   <CVTopicsNavControl client:only root="experience-wrapper" />
 </div>
 
