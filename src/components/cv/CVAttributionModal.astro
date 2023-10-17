@@ -1,13 +1,9 @@
 ---
-const credits = [
-  { role: 'Scalable Web Framework', label: 'Astro', href: 'https://astro.build' },
-  { role: 'Component Framework', label: 'Svelte', href: 'https://svelte.dev/' },
-  { role: 'Digital Transformation', label: 'Preact', href: 'https://preactjs.com/' },
-  { role: 'CSS Framework', label: 'DaisyUI on TailwindCSS', href: 'https://daisyui.com/' },
-  { role: 'Reference Theme', label: 'Astrowind by onWidget', href: 'https://onwidget.com/' },
-  { role: 'Database / User Auth', label: 'Pocketbase', href: 'https://pocketbase.io/' },
-  { role: 'Favicon', label: 'Abdul-Aziz @ Flaticon', href: 'https://www.flaticon.com/free-icons/add-user' },
-];
+import Image from '~/components/common/Image.astro';
+import { credits } from '~/content/cv/credits';
+
+
+
 ---
 
 <dialog id="credits-modal" class="modal modal-bottom sm:modal-middle bg-page">
@@ -17,7 +13,7 @@ const credits = [
     </form>
 
     <h3 class="font-bold text-lg">Open Source Credits</h3>
-    <p>This site is possible because of the hard work of many contributors to the open source community:</p>
+    <p>This site is built on and extends the excellent work of many contributors to the open source community:</p>
     <table class="table-auto text-sm mt-2">
       <thead>
         <th class="px-4 text-left">Site Role</th>
@@ -25,11 +21,16 @@ const credits = [
       </thead>
       <tbody>
         {
-          credits.map(({ role, label, href }) => (
+          credits.map(({ role, label, href, image }) => (
             <tr>
               <td class="px-4 text-left">{role}:</td>
               <td class="px-4 text-left">
-                <a href={href} target="_blank">
+                <a href={href} target="_blank ">
+                  <Image src={image} alt=`Icon representation of ${label}` width="20"
+                      height="20"
+                      decoding="async"
+                      loading="lazy"
+                      class="mr-2 inline-block"/>
                   {label}
                 </a>
               </td>
