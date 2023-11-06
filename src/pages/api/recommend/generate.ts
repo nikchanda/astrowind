@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro';
 import { ChatGPTAPI } from 'chatgpt';
 
-const key = `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`;
+const key = import.meta.env.SECRET_OPENAI_API_KEY;
 const chatapi = new ChatGPTAPI({
   apiKey: key,
   debug: false,
