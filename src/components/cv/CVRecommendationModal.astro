@@ -1,0 +1,418 @@
+---
+const relationshipList = [  
+  'Board Member',
+  'Client',  
+  'Coach',  
+  'Colleague',  
+  'Co-worker',  
+  'Customer',  
+  'Direct Report',  
+  'Family',  
+  'Friend',  
+  'Investor',  
+  'Manager',  
+  'Mentee',  
+  'Mentor',  
+  'Neighbor',  
+  'Partner',  
+  'Student',  
+  'Teacher',  
+  'Vendor'
+]
+
+
+const characterList = [  
+  'Accountability', 
+  'Authenticity',  
+  'Communication',  
+  'Compassion',  
+  'Conscientiousness',  
+  'Courage',  
+  'Creativity',  
+  'Curiosity',  
+  'Emotional Intelligence', 
+  'Energy',  
+  'Enthusiasm',  
+  'Flexibility',  
+  'Honesty',  
+  'Humility',  
+  'Humor',  
+  'Intelligence',  
+  'Integrity',  
+  'Kindness',  
+  'Leadership',  
+  'Loyalty',  
+  'Optimism',  
+  'Resiliance', 
+  'Self-Awareness',  
+  'Trustworthiness',
+]
+
+
+const skillsList = [
+  'Coaching',
+  'Collaboration',
+  'Communication',
+  'Conflict Resolution',
+  'Creativity',
+  'Critical Thinking',
+  'Customer-Centric',
+  'Decision Making',
+  'Deep Technical Knowledge',
+  'Innovation',
+  'Leadership',
+  'Management',
+  'Marketing',
+  'Motivation',
+  'Problem Solving',
+  'Product Management',
+  'Software Architecture',
+  'Software Design',
+  'Software Development',
+  'Strategy',
+  'Technical Leadership',
+  'Technical Writing',
+  'Teaching',
+]
+
+---
+
+
+
+
+
+
+<dialog id="recommend-modal" class="modal modal-bottom sm:modal-middle bg-page">
+  <div class="modal-box">
+    <form class="close-form" method="dialog">
+      <button class="btn-close btn btn-sm btn-circle btn-ghost absolute right-2 top-2" style="line-height:0.3">✕</button
+      >
+    </form>
+
+    <div class="flex flex-col h-full mt-6">
+      <header class="modal-header flex flex-col">
+        <h3 class="text-2xl font-bold">Recommendation Generator</h3>
+        <p class="text-sm">Why use Generative AI to write a first draft? Honestly? It's kind of fun.</p>
+        <div class="w-full grid content-center">
+          <ul class="steps text-xs mt-4">
+            <li class="step step-neutral">Relationship</li>
+            <li class="step">Character</li>
+            <li class="step">Skills</li>
+            <li class="step">Review</li>
+          </ul>
+        </div>
+      </header>
+
+      <div class="main flex-grow mt-6">
+
+
+    <div id="panel-relationship" class="step-panel">
+      <div>
+        <p class="flex">
+        <span>In relationship to Nik, I </span>
+        <label class="flex items-center relative w-max cursor-pointer select-none ml-2 mr-2">
+          <input
+            name="relationship-tense"
+            type="checkbox"
+            checked
+            class="appearance-none transition-colors cursor-pointer w-20 h-7 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black focus:ring-grey-500 bg-neutral-400"
+          />
+          <span class="label-off absolute font-medium text-xs uppercase  text-white">WAS</span>
+          <span class="label-on absolute font-medium text-xs uppercase  text-white">AM</span>
+          <span class="w-10 h-7 absolute rounded-full transform transition-transform bg-gray-200"></span>
+        </label>
+        <span>Nik's: <span class="text-xs">(Choose up to 2)</span></span>
+        
+      </p>
+      </div>
+      <div class="tag-cloud flex justify-center flex-wrap gap-2 p-4 max-w-sm mx-auto my-4">
+        {
+          relationshipList.map((item) => {
+            return (
+              <button id=`btn-rel-${item.replace(' ','')}` class="relationship-tag tag px-2 py-1 rounded bg-gray-200 text-gray-700 text-sm hover:bg-gray-300 transition duration-200 ease-in-out">
+                {item}
+              </button>
+            );
+          })
+        }
+      </div>
+    </div>
+
+    <div id="panel-character" class="step-panel min-h-60 hidden">
+      <p>When I think of Nik's character, I am most inclined to tell others about his: <span class="text-xs">(Choose up to 3)</span></p>
+      <div class="tag-cloud flex justify-center flex-wrap gap-2 p-4 max-w-sm mx-auto my-4">
+        {
+          characterList.map((item) => {
+            return (
+              <button class="character-tag tag px-2 py-1 rounded bg-gray-200 text-gray-700 text-sm hover:bg-gray-300 transition duration-200 ease-in-out">
+                {item}
+              </button>
+            );
+          })
+        }
+      </div>
+    </div>
+
+    <div id="panel-skills" class="step-panel min-h-60 hidden">
+      <h4>Nik's Skills</h4>
+      <p>I have been most impressed with Nik's skills in regards to: <span class="text-xs">(Choose up to 3)</span></p>
+      <div class="tag-cloud flex justify-center flex-wrap gap-2 p-4 max-w-sm mx-auto my-4">
+        {
+          skillsList.map((item) => {
+            return (
+              <button class="skills-tag tag px-2 py-1 rounded bg-gray-200 text-gray-700 text-sm hover:bg-gray-300 transition duration-200 ease-in-out">
+                {item}
+              </button>
+            );
+          })
+        }
+      </div>
+    </div>
+
+    <div id="panel-draft" class="step-panel min-h-60 hidden">
+      <div id="draft-fetching">
+        <p>Generating a draft recommendation...</p>
+        <span class="loading loading-dots loading-lg"></span>
+      </div>
+      
+      <div id="draft-results" class="hidden">
+        <p>Here's a rought draft. Please feel free to edit it, then click 'Next'</p>
+        <textarea id="recommendationDraft" class="w-full textarea textarea-bordered text-sm" placeholder="Recommendation"
+      ></textarea>
+      </div>
+      
+    </div>
+
+    </div>
+
+      <footer class="mt-6">
+        <div>
+          <div class="join grid grid-cols-2">
+            <button id="btn-prev" class="join-item  btn btn-outline text-sm hover:text-current">Previous</button>
+            <button id="btn-next" class="join-item  btn btn-outline text-sm hover:text-current">Next</button>
+          </div>
+        </div>
+
+        
+      </footer>
+    </div>
+  </div>
+</dialog>
+<form method="dialog" class="modal-backdrop">
+  <button>close</button>
+</form>
+
+<script>
+  let relationshipSelections = [];
+  let characterSelections = [];
+  let skillsSelections = [];
+  let tense = 'was';
+  let drafts = [];
+
+  const relationshipTense = document.querySelector('input[name="relationship-tense"]');
+  relationshipTense.addEventListener('change', (e) => {
+    tense = e.target.checked ? 'am' : 'was';
+  });
+
+  const relationshipTags = document.querySelectorAll('.relationship-tag');
+  relationshipTags.forEach((tag) => {
+    tag.addEventListener('click', (e) => {
+      e.preventDefault();
+      const btn = document.getElementById(`btn-rel-${tag.innerText.replace(' ', '')}`);
+      const isSelecting = !btn.classList.contains('selected');
+
+      if (relationshipSelections.length == 2 && isSelecting) {
+        return;
+      }
+
+      btn.classList.toggle('selected');
+      btn.classList.toggle('bg-gray-200');
+      btn.classList.toggle('bg-green-500');
+      btn.classList.toggle('text-gray-700');
+      btn.classList.toggle('text-white');
+
+      if (isSelecting) {
+        relationshipSelections.push(e.target.textContent);
+      } else {
+        relationshipSelections = relationshipSelections.filter((item) => item !== e.target.textContent);
+      }
+    });
+  });
+
+  const characterTags = document.querySelectorAll('.character-tag');
+  characterTags.forEach((tag) => {
+    tag.addEventListener('click', (e) => {
+      e.preventDefault();
+      const btn = e.target;
+      const isSelecting = !btn.classList.contains('selected');
+
+      if (characterSelections.length == 3 && isSelecting) {
+        return;
+      }
+
+      btn.classList.toggle('selected');
+      btn.classList.toggle('bg-gray-200');
+      btn.classList.toggle('bg-green-500');
+      btn.classList.toggle('text-gray-700');
+      btn.classList.toggle('text-white');
+
+      if (isSelecting) {
+        characterSelections.push(e.target.textContent);
+      } else {
+        characterSelections = characterSelections.filter((item) => item !== e.target.textContent);
+      }
+    });
+  });
+
+  const skillsTags = document.querySelectorAll('.skills-tag');
+  skillsTags.forEach((tag) => {
+    tag.addEventListener('click', (e) => {
+      e.preventDefault();
+      const btn = e.target;
+      const isSelecting = !btn.classList.contains('selected');
+
+      if (skillsSelections.length == 3 && isSelecting) {
+        return;
+      }
+
+      btn.classList.toggle('selected');
+      btn.classList.toggle('bg-gray-200');
+      btn.classList.toggle('bg-green-500');
+      btn.classList.toggle('text-gray-700');
+      btn.classList.toggle('text-white');
+
+      if (isSelecting) {
+        skillsSelections.push(e.target.textContent);
+      } else {
+        skillsSelections = skillsSelections.filter((item) => item !== e.target.textContent);
+      }
+    });
+  });
+
+  const showStep = (stepIndex) => {
+    currentStep = stepIndex;
+
+    const panels = document.querySelectorAll('.step-panel');
+    panels.forEach((panel) => {
+      panel.classList.add('hidden');
+    });
+    panels[currentStep].classList.remove('hidden');
+
+    const steps = document.querySelectorAll('.step');
+    steps.forEach((step, index) => {
+      step.classList.remove('step-neutral');
+      if (index <= currentStep) {
+        step.classList.add('step-neutral');
+      }
+    });
+
+    if (stepIndex == 3 && drafts.length == 0) {
+      fetchRecommendations();
+    }
+  };
+
+  let currentStep = 0;
+  const steps = document.querySelectorAll('.step');
+  steps.forEach((step) => {
+    step.addEventListener('click', (e) => {
+      e.preventDefault();
+      const step = e.target;
+      const stepIndex = Array.from(steps).indexOf(step);
+      showStep(stepIndex);
+    });
+  });
+
+  const copyClose = () => {
+    // copy the draft to the recommendation
+    const draft = document.querySelector('#recommendationDraft');
+    const parent = document.querySelector('#recommendation');
+    parent.value = draft.value;
+    const closeBtn = document.querySelector('#recommend-modal form.close-form button.btn-close');
+    const e = new MouseEvent('click', {
+      view: window,
+      bubbles: true,
+      cancelable: true,
+    });
+    closeBtn.dispatchEvent(e);
+  };
+
+  const btnPrev = document.getElementById('btn-prev');
+  btnPrev.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (currentStep != 0) {
+      showStep(currentStep - 1);
+    }
+  });
+
+  const btnNext = document.getElementById('btn-next');
+  btnNext.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (currentStep != 3) {
+      showStep(currentStep + 1);
+    } else {
+      copyClose();
+    }
+  });
+
+  const fetchRecommendations = async () => {
+    setFetching(true);
+    const draft = await fetch('/api/recommend/generate', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        tense,
+        relationships: relationshipSelections,
+        characters: characterSelections,
+        skills: skillsSelections,
+      }),
+    }).then((res) => res.json());
+
+    if ('undefined' != typeof draft.text) {
+      drafts[0] = draft.text;
+    }
+
+    const recommendation = document.getElementById('recommendationDraft');
+    recommendation.value = drafts[0];
+    setFetching(false);
+  };
+
+  const setFetching = (isFetching) => {
+    const fetching = document.getElementById('draft-fetching');
+    const results = document.getElementById('draft-results');
+    if (isFetching) {
+      fetching.classList.remove('hidden');
+      results.classList.add('hidden');
+    } else {
+      fetching.classList.add('hidden');
+      results.classList.remove('hidden');
+    }
+  };
+</script>
+
+<style>
+  .step-panel {
+    min-height: 400px;
+  }
+
+  input:checked {
+    background-color: rgba(163,163,163,1); 
+  }
+
+  input:checked ~ span:last-child {
+    --tw-translate-x: 2.5rem; 
+  }
+
+  .label-off {
+    right: 1em;
+  }
+  .label-on {
+    left: 1em;
+  }
+
+  #recommendationDraft {
+    min-height: 300px;
+    margin-top: 2rem
+  }
+</style>

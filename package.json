@@ -24,9 +24,13 @@
     "@vercel/analytics": "^1.1.1",
     "astro": "^3.0.12",
     "astro-icon": "^1.0.0-next.2",
+    "chatgpt": "^5.2.5",
+    "crypto": "^1.0.1",
     "limax": "4.1.0",
+    "linkedin-api-client": "^0.3.0",
     "lodash.merge": "^4.6.2",
     "n": "^9.1.0",
+    "pocketbase": "^0.19.0",
     "stable": "^0.1.8",
     "svelte": "^4.2.1",
     "unpic": "^3.10.0"

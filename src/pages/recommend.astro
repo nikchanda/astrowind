@@ -1,0 +1,157 @@
+---
+import Layout from '~/layouts/LandingLayout.astro';
+import { Icon } from 'astro-icon/components';
+import ContentSection from '~/components/widgets/ContentSection.astro';
+import CVRecommendationModal from '~/components/cv/CVRecommendationModal.astro';
+import CVRecommendationConfirmation from '~/components/cv/CVRecommendationConfirmation.astro';
+---
+
+<Layout>
+  <ContentSection title="May I Ask for Your Recommendation?">
+    <div class="md:mx-auto md:mb-12 max-w-3xl">
+      <p>
+        There's no greater compliment than the public endorsement of a friend. Would you be kind enough to offer me the
+        encouragement of your recommendation to share on this site?
+      </p>
+      <form id="recommendation-form">
+        <div class="form-control w-full mt-2">
+          <label class="label">
+            <span class="label-text font-bold text-lg">What is your name?</span>
+          </label>
+          <input name="name" type="text" placeholder="Type here" class="input input-bordered w-full" />
+        </div>
+        <div class="form-control w-full mt-2">
+          <label class="label">
+            <span class="label-text font-bold text-lg">What is your professional title?</span>
+          </label>
+          <input name="title" type="text" placeholder="Type here" class="input input-bordered w-full" />
+        </div>
+        <div class="form-control w-full mt-2">
+          <label class="label">
+            <span class="label-text font-bold text-lg">What wonderful things would you say about me?</span>
+            <span class="label-text-alt text-sm"
+              ><a href="javascript:return(0);" id="generator-toggle"
+                ><Icon name="tabler:windmill" class="inline" /> Use the Generator</a
+              ></span
+            >
+          </label>
+          <textarea
+            id="recommendation"
+            name="text"
+            class="textarea textarea-bordered w-full h-56 resize-y"
+            placeholder="Please type a recommendation, or use the generator to help create a draft."></textarea>
+          <label class="label">
+            <span class="label-text-alt"></span>
+            <span class="label-text-alt" id="char-counter"></span>
+          </label>
+        </div>
+        <div class="form-control w-full">
+          <label class="label">
+            <span class="label-text font-bold text-lg">Can you share your LinkedIn profile or website link?</span>
+          </label>
+          <input name="url" type="text" placeholder="https://" class="input input-bordered w-full" />
+          <label class="label">
+            <span></span>
+            <span class="label-alt">(optional)</span>
+          </label>
+        </div>
+        <div class="w-full items-end mt-4 text-end">
+          <button id="recomendation-submit" class="btn btn-primary">Send</button>
+        </div>
+      </form>
+    </div>
+  </ContentSection>
+
+  <CVRecommendationModal />
+
+  <CVRecommendationConfirmation />
+
+  <script>
+    const charCounter = document.getElementById('char-counter');
+    const recommendation = document.querySelector('textarea[name="recommendation"]');
+    const generatorToggle = document.getElementById('generator-toggle');
+    let submittedRecommendation = '';
+
+    const updateCharCounter = () => {
+      if (recommendation) {
+        charCounter.innerText = `${recommendation.value.length} / 3000`;
+      }
+    };
+
+    if (recommendation && charCounter) {
+      if (recommendation.addEventListener) {
+        recommendation.addEventListener(
+          'input',
+          function () {
+            updateCharCounter();
+          },
+          false
+        );
+      } else if (recommendation.attachEvent) {
+        recommendation.attachEvent(
+          'onpropertychange',
+          function () {
+            updateCharCounter();
+          },
+          false
+        );
+      }
+    }
+
+    if (generatorToggle) {
+      generatorToggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        const modal = document.getElementById('recommend-modal');
+        modal.showModal();
+      });
+    }
+
+    const showConfirmation = () => {
+      const dialog = document.getElementById('recommendation-confirmation');
+      dialog.showModal();
+    };
+
+    // handle form submission
+    const submitButton = document.getElementById('recomendation-submit');
+    submitButton.addEventListener('click', (e) => {
+      e.preventDefault();
+      // TODO Add validation
+      submitForm();
+    });
+
+    const submitForm = () => {
+      const form = document.querySelector('#recommendation-form');
+      if (form) {
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+        const url = '/api/recommend/create';
+        const params = { name: data.name, title: data.title, text: data.text, link: data.url };
+        submittedRecommendation = data.text;
+
+        const headers = {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        };
+
+        fetch(url, {
+          method: 'PUT',
+          body: JSON.stringify(params),
+          headers,
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            console.log('Success:', data);
+            if (data.success) {
+              showConfirmation();
+            } else {
+              alert('Oops! Something went wrong.');
+            }
+          })
+          .catch((error) => {
+            console.error(error);
+            alert('Oops! Something went wrong.');
+          });
+      }
+    };
+  </script>
+</Layout>
