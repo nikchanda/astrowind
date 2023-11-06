@@ -6,6 +6,16 @@ import CVGridItems from './CVGridItems.astro';
 const { cv = '' } = Astro.props;
 const blogroot = `/blog/tag`;
 
+const formatProfDevItems = (cv) => {
+  let items = [];
+  const edu = formatEduItems(cv);
+  const cert = formatCertItems(cv);
+  items = [...cert];
+  items.unshift(edu[0]);
+  items.push(edu[1]);
+  return items;
+};
+
 const formatEduItems = (cv) => {
   let items = [];
   for (const row of education) {
@@ -55,6 +65,9 @@ const formatCertItems = (cv) => {
 ---
 
 <Fragment>
+  <CVGridItems items={formatProfDevItems()} />
+  <!-- 
   <CVGridItems title="University Studies" items={formatEduItems()} />
   <CVGridItems title="Professional Certifications" items={formatCertItems()} />
+  -->
 </Fragment>

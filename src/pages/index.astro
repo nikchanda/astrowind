@@ -9,10 +9,9 @@ import CVExperience from '~/components/cv/CVExperience.astro';
 import CVEducation from '~/components/cv/CVEducation.astro';
 import CVSkills from '~/components/cv/CVSkills.astro';
 import CVRecognition from '~/components/cv/CVRecognition.astro';
-import CVContactModal from '~/components/cv/CVContactModal.astro';
+
 import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
 import { spaHeaderNav } from '~/utils/navigation';
-import CVAttributionModal from '~/components/cv/CVAttributionModal.astro';
 
 const header = spaHeaderNav();
 const metadata = {
@@ -43,7 +42,7 @@ const metadata = {
         leadership in the high-stakes world of SaaS and beyond.
       </Fragment>
     </Hero>
-
+    <!-- 
     <FeatureCarousel
       title="Professional Highlights"
       id="about-highlights"
@@ -61,6 +60,7 @@ const metadata = {
       ]}
       as="div"
     />
+      -->
   </ContentSection>
 
   <ContentSection id="experience" title="Professional Experience">
@@ -80,12 +80,14 @@ const metadata = {
   </ContentSection>
 
   <ContentSection id="discussion" title="Discussion">
+    <!-- 
     <BlogLatestPosts
       id="blog"
       title={`<span class='text-muted text-xl mt-0 mb-4 font-normal'>Recent Articles</span>`}
     />
+    -->
     <CallToAction
-      title="Let's get building together"
+      title="Let's build together"
       subtitle="Ready to see how to move your team forward?"
       actions={[
         {
@@ -96,7 +98,4 @@ const metadata = {
       ]}
     />
   </ContentSection>
-
-  <CVContactModal />
-  <CVAttributionModal />
 </Layout>

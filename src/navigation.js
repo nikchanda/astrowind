@@ -64,6 +64,29 @@ export const cvHeaderData = {
 export const headerData = cvHeaderData;
 
 export const footerData = {
+  links: [],
+  secondaryLinks: [
+    { text: 'Terms', href: getPermalink('/terms') },
+    { text: 'Privacy Policy', href: getPermalink('/privacy') },
+    {
+      text: 'Credits',
+      href: 'javascript:return(0);',
+      onclick: `javascript:getElementById('credits-modal').showModal()`,
+    },
+    { text: 'Recommend', href: getPermalink('/recommend') },
+  ],
+  socialLinks: [
+    {
+      ariaLabel: 'LinkedIn',
+      icon: 'tabler:brand-linkedin',
+      href: 'https://www.linkedin.com/in/nikchanda/',
+      target: '_blank',
+    },
+  ],
+  footNote: `&copy; ${getCopyrightRange(2023)} Red Poppy Ventures, LLC.  All rights reserved.`,
+};
+
+export const fullFooterData = {
   links: [
     {
       title: 'Site Map',

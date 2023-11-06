@@ -22,19 +22,14 @@ const relationshipList = [
 
 
 const characterList = [  
-  'Accountability', 
   'Authenticity',  
   'Communication',  
-  'Compassion',  
   'Conscientiousness',  
   'Courage',  
-  'Creativity',  
-  'Curiosity',  
+  'Creativity',   
   'Emotional Intelligence', 
-  'Energy',  
   'Enthusiasm',  
   'Flexibility',  
-  'Honesty',  
   'Humility',  
   'Humor',  
   'Intelligence',  
@@ -53,7 +48,6 @@ const skillsList = [
   'Coaching',
   'Collaboration',
   'Communication',
-  'Conflict Resolution',
   'Creativity',
   'Critical Thinking',
   'Customer-Centric',
@@ -63,7 +57,6 @@ const skillsList = [
   'Leadership',
   'Management',
   'Marketing',
-  'Motivation',
   'Problem Solving',
   'Product Management',
   'Software Architecture',
@@ -121,7 +114,7 @@ const skillsList = [
           <span class="label-on absolute font-medium text-xs uppercase  text-white">AM</span>
           <span class="w-10 h-7 absolute rounded-full transform transition-transform bg-gray-200"></span>
         </label>
-        <span>Nik's: <span class="text-xs">(Choose up to 2)</span></span>
+        <span>Nik's: <span class="text-xs">(Choose up to 3)</span></span>
         
       </p>
       </div>
@@ -208,7 +201,16 @@ const skillsList = [
   let skillsSelections = [];
   let tense = 'was';
   let drafts = [];
+  let currentStep = 0
 
+  const modal = document.querySelector("#recommend-modal");
+  const modalObserver = new MutationObserver(function(event){
+    if (event[0].attributeName == 'open') {
+      showStep(0);
+    }
+  });
+  modalObserver.observe(modal, { attributes: true });
+              
   const relationshipTense = document.querySelector('input[name="relationship-tense"]');
   relationshipTense.addEventListener('change', (e) => {
     tense = e.target.checked ? 'am' : 'was';
@@ -221,7 +223,7 @@ const skillsList = [
       const btn = document.getElementById(`btn-rel-${tag.innerText.replace(' ', '')}`);
       const isSelecting = !btn.classList.contains('selected');
 
-      if (relationshipSelections.length == 2 && isSelecting) {
+      if (relationshipSelections.length == 3 && isSelecting) {
         return;
       }
 
@@ -311,7 +313,6 @@ const skillsList = [
     }
   };
 
-  let currentStep = 0;
   const steps = document.querySelectorAll('.step');
   steps.forEach((step) => {
     step.addEventListener('click', (e) => {
