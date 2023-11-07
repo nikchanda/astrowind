@@ -3,7 +3,7 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "functions": {
-    "pages/api/recommend/generate": {
+    "pages/api/**/*.ts": {
       "maxDuration": 60
     }
   },
