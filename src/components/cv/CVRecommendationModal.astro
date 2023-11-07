@@ -1,4 +1,7 @@
 ---
+import {pino} from 'pino';
+const logger = pino({level: 'debug'});
+
 const relationshipList = [  
   'Board Member',
   'Client',  
@@ -69,9 +72,6 @@ const skillsList = [
 ]
 
 ---
-
-
-
 
 
 
@@ -199,7 +199,7 @@ const skillsList = [
   let relationshipSelections = [];
   let characterSelections = [];
   let skillsSelections = [];
-  let tense = 'was';
+  let tense = 'is';
   let drafts = [];
   let currentStep = 0
 
@@ -357,7 +357,8 @@ const skillsList = [
 
   const fetchRecommendations = async () => {
     setFetching(true);
-    const draft = await fetch('/api/recommend/generate', {
+    const host = `${location.protocol}//${location.host}`;
+    const draft = await fetch(`${host}/api/recommend/generate`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -376,6 +377,15 @@ const skillsList = [
 
     const recommendation = document.getElementById('recommendationDraft');
     recommendation.value = drafts[0];
+
+    const attributesField = document.querySelector('#recommendation-attributes');
+    attributesField.value = JSON.stringify({
+      tense: tense,
+      relationships: relationshipSelections,
+      characters: characterSelections,
+      skills: skillsSelections,
+    });
+
     setFetching(false);
   };
 

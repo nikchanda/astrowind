@@ -48,110 +48,117 @@ import CVRecommendationConfirmation from '~/components/cv/CVRecommendationConfir
         <div class="form-control w-full">
           <label class="label">
             <span class="label-text font-bold text-lg">Can you share your LinkedIn profile or website link?</span>
+            <span class="label-alt">(optional)</span>
           </label>
           <input name="url" type="text" placeholder="https://" class="input input-bordered w-full" />
           <label class="label">
             <span></span>
-            <span class="label-alt">(optional)</span>
           </label>
         </div>
         <div class="w-full items-end mt-4 text-end">
-          <button id="recomendation-submit" class="btn btn-primary">Send</button>
+          <input id="recommendation-attributes" type="hidden" name="attributes" value="" />
+          <button id="recommendation-submit" class="btn btn-primary">Send</button>
         </div>
       </form>
     </div>
   </ContentSection>
-
-  <CVRecommendationModal />
-
-  <CVRecommendationConfirmation />
-
-  <script>
-    const charCounter = document.getElementById('char-counter');
-    const recommendation = document.querySelector('textarea[name="recommendation"]');
-    const generatorToggle = document.getElementById('generator-toggle');
-    let submittedRecommendation = '';
-
-    const updateCharCounter = () => {
-      if (recommendation) {
-        charCounter.innerText = `${recommendation.value.length} / 3000`;
-      }
-    };
-
-    if (recommendation && charCounter) {
-      if (recommendation.addEventListener) {
-        recommendation.addEventListener(
-          'input',
-          function () {
-            updateCharCounter();
-          },
-          false
-        );
-      } else if (recommendation.attachEvent) {
-        recommendation.attachEvent(
-          'onpropertychange',
-          function () {
-            updateCharCounter();
-          },
-          false
-        );
-      }
-    }
-
-    if (generatorToggle) {
-      generatorToggle.addEventListener('click', (e) => {
-        e.preventDefault();
-        const modal = document.getElementById('recommend-modal');
-        modal.showModal();
-      });
-    }
-
-    const showConfirmation = () => {
-      const dialog = document.getElementById('recommendation-confirmation');
-      dialog.showModal();
-    };
-
-    // handle form submission
-    const submitButton = document.getElementById('recomendation-submit');
-    submitButton.addEventListener('click', (e) => {
-      e.preventDefault();
-      // TODO Add validation
-      submitForm();
-    });
-
-    const submitForm = () => {
-      const form = document.querySelector('#recommendation-form');
-      if (form) {
-        const formData = new FormData(form);
-        const data = Object.fromEntries(formData.entries());
-        const url = '/api/recommend/create';
-        const params = { name: data.name, title: data.title, text: data.text, link: data.url };
-        submittedRecommendation = data.text;
-
-        const headers = {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        };
-
-        fetch(url, {
-          method: 'PUT',
-          body: JSON.stringify(params),
-          headers,
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            console.log('Success:', data);
-            if (data.success) {
-              showConfirmation();
-            } else {
-              alert('Oops! Something went wrong.');
-            }
-          })
-          .catch((error) => {
-            console.error(error);
-            alert('Oops! Something went wrong.');
-          });
-      }
-    };
-  </script>
 </Layout>
+
+<CVRecommendationModal />
+
+<CVRecommendationConfirmation />
+
+<script>
+  const charCounter = document.getElementById('char-counter');
+  const recommendation = document.querySelector('textarea[name="recommendation"]');
+  const generatorToggle = document.getElementById('generator-toggle');
+  let submittedRecommendation = '';
+
+  const updateCharCounter = () => {
+    if (recommendation) {
+      charCounter.innerText = `${recommendation.value.length} / 3000`;
+    }
+  };
+
+  if (recommendation && charCounter) {
+    if (recommendation.addEventListener) {
+      recommendation.addEventListener(
+        'input',
+        function () {
+          updateCharCounter();
+        },
+        false
+      );
+    } else if (recommendation.attachEvent) {
+      recommendation.attachEvent(
+        'onpropertychange',
+        function () {
+          updateCharCounter();
+        },
+        false
+      );
+    }
+  }
+
+  if (generatorToggle) {
+    generatorToggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      const modal = document.getElementById('recommend-modal');
+      modal.showModal();
+    });
+  }
+
+  const showConfirmation = () => {
+    const dialog = document.getElementById('recommendation-confirmation');
+    dialog.showModal();
+  };
+
+  // handle form submission
+  const submitButton = document.getElementById('recommendation-submit');
+  submitButton.addEventListener('click', async (e) => {
+    e.preventDefault();
+    // TODO Add validation
+    await submitForm();
+  });
+
+  const submitForm = async () => {
+    const form = document.querySelector('#recommendation-form');
+    if (form) {
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+      const url = `${location.protocol}//${location.host}/api/recommend/create`;
+      const params = {
+        name: data.name,
+        title: data.title,
+        text: data.text,
+        link: data.url,
+        attributes: data.attributes,
+      };
+      submittedRecommendation = data.text;
+
+      const headers = {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      };
+
+      await fetch(url, {
+        method: 'PUT',
+        body: JSON.stringify(params),
+        headers,
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('Success:', data);
+          if (data.success) {
+            showConfirmation();
+          } else {
+            alert('Oops! Something went wrong.');
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+          alert('Oops! Something went wrong.');
+        });
+    }
+  };
+</script>

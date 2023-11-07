@@ -33,12 +33,10 @@ export const PUT: APIRoute = async ({ params, request }) => {
 
   console.log('body', body);
 
-  const { name, title, text, link } = JSON.parse(body);
+  const { name, title, text, link, attributes } = JSON.parse(body);
   let result = null;
   await pb.admins.authWithPassword(pb_user, pb_pass);
   const hash = createHash('md5').update(`${name}-${title}-${text}`).digest('hex');
-
-  console.log('hash', hash);
 
   // Check if this already exists
   let exists = false;
@@ -70,6 +68,7 @@ export const PUT: APIRoute = async ({ params, request }) => {
       text: text,
       url: link,
       hash: hash,
+      attributes: attributes,
     });
     result = {
       success: true,

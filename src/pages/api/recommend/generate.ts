@@ -1,15 +1,13 @@
 import type { APIRoute } from 'astro';
 import OpenAI from 'openai';
+
 import { pino } from 'pino';
-
 const logger = pino({ level: 'debug' });
-const key = process.env.OPENAI_API_KEY ? process.env.OPENAI_API_KEY : import.meta.env.OPENAI_API_KEY; // this should work for vercel
 
+const key = process.env.OPENAI_API_KEY ? process.env.OPENAI_API_KEY : import.meta.env.OPENAI_API_KEY; // this should work for vercel
 const openai = new OpenAI({
   apiKey: key,
 });
-
-export const runtime = 'edge';
 
 export const sanitizeJSONString = (input: string) => input.replace(/[\n\r\t]/g, '');
 
@@ -36,7 +34,7 @@ export const POST: APIRoute = async ({ params, request }) => {
 
   logger.debug('POST /api/recommend/generate', { prompt });
   const res = await openai.chat.completions.create({
-    model: 'gpt-3.5-turbo',
+    model: 'gpt-3.5-turbo-16k-0613',
     messages: [{ role: 'user', content: prompt }],
   });
   logger.debug('POST /api/recommend/generate', { res });
