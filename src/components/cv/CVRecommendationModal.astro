@@ -362,7 +362,7 @@ const skillsList = [
     let draft = {};
     try {
       const response = await fetch(`${host}/api/recommend/generate`, {
-        method: 'post',
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },

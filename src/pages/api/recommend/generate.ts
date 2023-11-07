@@ -3,10 +3,7 @@ import OpenAI from 'openai';
 
 import { pino } from 'pino';
 const logger = pino({ level: 'debug' });
-
-export const config = {
-  runtime: 'edge',
-};
+export const prerender = false;
 
 const key = process.env.OPENAI_API_KEY ? process.env.OPENAI_API_KEY : import.meta.env.OPENAI_API_KEY; // this should work for vercel
 const openai = new OpenAI({
@@ -15,7 +12,7 @@ const openai = new OpenAI({
 
 export const sanitizeJSONString = (input: string) => input.replace(/[\n\r\t]/g, '');
 
-export const get: APIRoute = async ({ params, request }) => {
+export const GET: APIRoute = async ({ params, request }) => {
   logger.debug('GET /api/recommend/generate');
 
   return new Response(JSON.stringify({ message: 'Hello world!' }), {
@@ -26,7 +23,7 @@ export const get: APIRoute = async ({ params, request }) => {
   });
 };
 
-export const post: APIRoute = async ({ params, request }) => {
+export const POST: APIRoute = async ({ params, request }) => {
   const body = await request.text();
   const { characters, relationships, skills, tense } = JSON.parse(body);
 
