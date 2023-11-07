@@ -11,7 +11,7 @@ import svelte from '@astrojs/svelte';
 import tasks from './src/utils/tasks';
 import { readingTimeRemarkPlugin } from './src/utils/frontmatter.mjs';
 import { ANALYTICS, SITE } from './src/utils/config.ts';
-import vercelEdge from '@astrojs/vercel/edge';
+import vercelEdge from '@astrojs/vercel/serverless';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const whenExternalScripts = (items = []) =>
   ANALYTICS.vendors.googleAnalytics.id && ANALYTICS.vendors.googleAnalytics.partytown
@@ -80,5 +80,5 @@ export default defineConfig({
       },
     },
   },
-  adapter: vercelEdge({ webAnalytics: true }),
+  adapter: vercel({ webAnalytics: true }),
 });
