@@ -1,9 +1,9 @@
 import type { APIRoute } from 'astro';
 import { ChatGPTAPI } from 'chatgpt';
 
-const key = import.meta.env.SECRET_OPENAI_API_KEY
-  ? import.meta.env.SECRET_OPENAI_API_KEY
-  : process.env.SECRET_OPENAI_API_KEY;
+const key = process.env.SECRET_OPENAI_API_KEY
+  ? process.env.SECRET_OPENAI_API_KEY
+  : import.meta.env.SECRET_OPENAI_API_KEY;
 const chatapi = new ChatGPTAPI({
   apiKey: key,
   debug: false,
