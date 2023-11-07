@@ -195,7 +195,8 @@ const skillsList = [
   <button>close</button>
 </form>
 
-<script>
+<script>import { log } from "node_modules/astro/dist/core/logger/core";
+
   let relationshipSelections = [];
   let characterSelections = [];
   let skillsSelections = [];
@@ -358,18 +359,29 @@ const skillsList = [
   const fetchRecommendations = async () => {
     setFetching(true);
     const host = `${location.protocol}//${location.host}`;
-    const draft = await fetch(`${host}/api/recommend/generate`, {
-      method: 'post',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        tense,
-        relationships: relationshipSelections,
-        characters: characterSelections,
-        skills: skillsSelections,
-      }),
-    }).then((res) => res.json());
+    let draft = {};
+    try {
+      const response = await fetch(`${host}/api/recommend/generate`, {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          tense,
+          relationships: relationshipSelections,
+          characters: characterSelections,
+          skills: skillsSelections,
+        }),
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      draft = await response.json();
+    } catch (e) {
+      logger.error(e);
+      draft.text = e;
+    }
+    
 
     if ('undefined' != typeof draft.text) {
       drafts[0] = draft.text;
