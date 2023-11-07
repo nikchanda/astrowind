@@ -11,7 +11,6 @@ const openai = new OpenAI({
 
 export const sanitizeJSONString = (input: string) => input.replace(/[\n\r\t]/g, '');
 
-/*
 export const GET: APIRoute = async ({ params, request }) => {
   logger.debug('GET /api/recommend/generate');
 
@@ -22,7 +21,6 @@ export const GET: APIRoute = async ({ params, request }) => {
     },
   });
 };
-*/
 
 export const POST: APIRoute = async ({ params, request }) => {
   const body = await request.text();

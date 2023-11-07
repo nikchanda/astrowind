@@ -19,7 +19,6 @@ const sendResponse = (result) => {
   });
 };
 
-/*
 export const GET: APIRoute = async ({ params, request }) => {
   return sendResponse({
     success: true,
@@ -28,7 +27,6 @@ export const GET: APIRoute = async ({ params, request }) => {
     detail: { hash: createHash('md5').update(`hello, world`).digest('hex') },
   });
 };
-*/
 
 export const PUT: APIRoute = async ({ params, request }) => {
   const body = await request.text();
