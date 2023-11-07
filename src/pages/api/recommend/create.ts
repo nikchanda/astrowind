@@ -23,7 +23,7 @@ const sendResponse = (result) => {
   });
 };
 
-export const GET: APIRoute = async ({ params, request }) => {
+export const get: APIRoute = async ({ params, request }) => {
   return sendResponse({
     success: true,
     status: 'SUCCESS',
@@ -32,7 +32,7 @@ export const GET: APIRoute = async ({ params, request }) => {
   });
 };
 
-export const PUT: APIRoute = async ({ params, request }) => {
+export const put: APIRoute = async ({ params, request }) => {
   const body = await request.text();
 
   console.log('body', body);
