@@ -16,7 +16,7 @@ metadata:
     index: true
     follow: true
   openGraph:
-    site_name: NikChanda.com
+    site_name: nikchanda.com
     images:
       - url: '~/assets/images/default.png'
         width: 1200
@@ -63,10 +63,10 @@ apps:
 analytics:
   vendors:
     googleAnalytics:
-      id: null # or "G-XXXXXXXXXX"
+      id: null # or "G-QVNHN7DZVS"
 
 ui:
-  theme: 'system' # Values: "system" | "light" | "dark" | "light:only" | "dark:only"
+  theme: 'light' # Values: "system" | "light" | "dark" | "light:only" | "dark:only"
 
   tokens:
     default:
