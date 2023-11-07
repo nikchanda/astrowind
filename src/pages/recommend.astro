@@ -4,6 +4,10 @@ import { Icon } from 'astro-icon/components';
 import ContentSection from '~/components/widgets/ContentSection.astro';
 import CVRecommendationModal from '~/components/cv/CVRecommendationModal.astro';
 import CVRecommendationConfirmation from '~/components/cv/CVRecommendationConfirmation.astro';
+
+export const config = {
+  runtime: 'edge',
+};
 ---
 
 <Layout>
