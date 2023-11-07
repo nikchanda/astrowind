@@ -130,7 +130,7 @@ export const config = {
     if (form) {
       const formData = new FormData(form);
       const data = Object.fromEntries(formData.entries());
-      const url = `${location.protocol}//${location.host}/api/recommend/create`;
+      const url = `${location.protocol}//${location.host}/api/create`;
       const params = {
         name: data.name,
         title: data.title,
