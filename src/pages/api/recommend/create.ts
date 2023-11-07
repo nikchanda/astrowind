@@ -2,6 +2,10 @@ import type { APIRoute } from 'astro';
 import PocketBase from 'pocketbase';
 import { createHash } from 'node:crypto';
 
+export const config = {
+  runtime: 'edge',
+};
+
 const pb = new PocketBase('https://nikchanda-com.pockethost.io');
 const pb_user = import.meta.env.SECRET_PB_EMAIL;
 const pb_pass = import.meta.env.SECRET_PB_PASSWORD;

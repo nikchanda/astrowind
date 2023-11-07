@@ -4,6 +4,10 @@ import OpenAI from 'openai';
 import { pino } from 'pino';
 const logger = pino({ level: 'debug' });
 
+export const config = {
+  runtime: 'edge',
+};
+
 const key = process.env.OPENAI_API_KEY ? process.env.OPENAI_API_KEY : import.meta.env.OPENAI_API_KEY; // this should work for vercel
 const openai = new OpenAI({
   apiKey: key,
