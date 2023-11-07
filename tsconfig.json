@@ -7,5 +7,11 @@
     "paths": {
       "~/*": ["src/*"]
     }
+  },
+  "functions": {
+    "api/recommend/*.ts": {
+      "memory": 3008,
+      "maxDuration": 50
+    }
   }
 }

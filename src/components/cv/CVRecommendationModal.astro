@@ -361,7 +361,7 @@ const skillsList = [
     const host = `${location.protocol}//${location.host}`;
     let draft = {};
     try {
-      const response = await fetch(`${host}/api/generate`, {
+      const response = await fetch(`${host}/api/recommend/generate`, {
         method: 'post',
         headers: {
           'Content-Type': 'application/json',
