@@ -21,12 +21,5 @@
         }
       ]
     }
-  ],
-  "functions": {
-    "api/**/*.{ts,tsx}": {
-      "runtime": "vercel-node@0.1.0",
-      "memory": 3008,
-      "maxDuration": 60
-    }
-  }
+  ]
 }
