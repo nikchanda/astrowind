@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro';
 import OpenAI from 'openai';
 
-const key = process.env.OPENAI_API_KEY ? process.env.OPENAI_API_KEY : import.meta.env.OPENAI_API_KEY;
+const key = process.env.OPENAI_API_KEY ? process.env.OPENAI_API_KEY : import.meta.env.OPENAI_API_KEY; // this should work for vercel
 
 const openai = new OpenAI({
   apiKey: key,
