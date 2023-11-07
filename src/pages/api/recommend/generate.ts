@@ -1,18 +1,13 @@
 import type { APIRoute } from 'astro';
-import { ChatGPTAPI } from 'chatgpt';
+import OpenAI from 'openai';
 
-const key = process.env.SECRET_OPENAI_API_KEY
-  ? process.env.SECRET_OPENAI_API_KEY
-  : import.meta.env.SECRET_OPENAI_API_KEY;
-const chatapi = new ChatGPTAPI({
+const key = process.env.OPENAI_API_KEY ? process.env.OPENAI_API_KEY : import.meta.env.OPENAI_API_KEY;
+
+const openai = new OpenAI({
   apiKey: key,
-  debug: false,
-  completionParams: {
-    model: 'gpt-3.5-turbo',
-    temperature: 0.5,
-    top_p: 0.8,
-  },
 });
+
+export const runtime = 'edge';
 
 export const sanitizeJSONString = (input: string) => input.replace(/[\n\r\t]/g, '');
 
@@ -35,8 +30,15 @@ export const POST: APIRoute = async ({ params, request }) => {
     ', '
   )}. Please use the following descriptive words where appropriate: "pleased, delighted, aquainted, dependable, intelligent, valuable asset, driven, genuine, qualified, adaptable." Please provide 1 option. Limit each option to 2600 characters or fewer, and return it in JSON format with the key "text". If there are any linebreaks in the response, please change them to the \\n character.`;
 
-  const res = await chatapi.sendMessage(prompt, {});
-  const resp = sanitizeJSONString(res.text); // this is to manage any replaces that might be needed
+  //const res = await chatapi.sendMessage(prompt, {});
+  const res = await openai.chat.completions.create({
+    model: 'gpt-3.5-turbo',
+    messages: [{ role: 'user', content: prompt }],
+  });
+
+  const resp = sanitizeJSONString(res.choices[0].message.content);
+  //const resp = res.text); // this is to manage any replaces that might be needed
+
   let results = { text: 'There was a problem generating the recommendation. Please try again.' };
   try {
     const parsed = JSON.parse(resp);
