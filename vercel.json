@@ -3,8 +3,13 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "functions": {
-    "api/recommend/generate": {
+    "api/.ts": {
+      "memory": 3008,
       "maxDuration": 60
+    },
+    "api/another.ts": {
+      "memory": 1024,
+      "maxDuration": 30
     }
   },
   "headers": [
