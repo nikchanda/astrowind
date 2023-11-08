@@ -1,5 +1,5 @@
 ---
-
+import { isMobile } from 'mobile-device-detect';
 ---
 
 <dialog id="recommendation-confirmation" class="modal modal-bottom sm:modal-middle bg-page">
@@ -29,8 +29,10 @@
 </form>
 
 <script>
-  const shareLink =
-    'https://www.linkedin.com/in/nikchanda/edit/forms/recommendation/write/?profileFormEntryPoint=PROFILE_SECTION&profileUrn=urn%3Ali%3Afsd_profile%3AACoAAAAQowIBGVKfFY3lmtvgHAF1kyh4TSUlWmg&trackingId=o4FF%2FFuqRuytRxw7VW2mqg%3D%3D';
+  console.log('is mobile', isMobile);
+  const shareLink = isMobile
+    ? 'https://www.linkedin.com/in/nikchanda'
+    : 'https://www.linkedin.com/in/nikchanda/edit/forms/recommendation/write/?profileFormEntryPoint=PROFILE_SECTION&profileUrn=urn%3Ali%3Afsd_profile%3AACoAAAAQowIBGVKfFY3lmtvgHAF1kyh4TSUlWmg&trackingId=o4FF%2FFuqRuytRxw7VW2mqg%3D%3D';
 
   const copyOperation = async (text) => {
     await navigator.clipboard.writeText(text);
