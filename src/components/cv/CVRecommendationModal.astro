@@ -195,8 +195,7 @@ const skillsList = [
   <button>close</button>
 </form>
 
-<script>import { applyPolyfills } from "astro/app/node";
-import { log } from "node_modules/astro/dist/core/logger/core";
+<script>import { log } from "node_modules/astro/dist/core/logger/core";
 
   let relationshipSelections = [];
   let characterSelections = [];
@@ -359,7 +358,8 @@ import { log } from "node_modules/astro/dist/core/logger/core";
 
   const fetchRecommendations = async () => {
     setFetching(true);
-    let apires = {};
+    const host = `${location.protocol}//${location.host}`;
+    let draft = {};
     try {
       const apiurl = `https://api.nikchanda.com/api/recommendation/generate`;
       const response = await fetch(apiurl, {
@@ -377,14 +377,15 @@ import { log } from "node_modules/astro/dist/core/logger/core";
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      apires = await response.json();
+      draft = await response.json();
     } catch (e) {
-      console.log(e);
-      drafts[0] = e;
+      logger.error(e);
+      draft.text = e;
     }
     
-    if (apires.success) {
-      drafts[0] = apires.detail.text;
+
+    if ('undefined' != typeof draft.detail) {
+      drafts[0] = draft.detail.text;
     }
 
     const recommendation = document.getElementById('recommendationDraft');
