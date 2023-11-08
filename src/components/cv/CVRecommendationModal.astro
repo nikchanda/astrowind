@@ -361,7 +361,8 @@ const skillsList = [
     const host = `${location.protocol}//${location.host}`;
     let draft = {};
     try {
-      const response = await fetch(`https://api.nikchanda.com/api/recommendation/generate`, {
+      const apiurl = `https://api.nikchanda.com/api/recommendation/generate`;
+      const response = await fetch(`https://www.nikchanda.com/api/recommend/generate`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
