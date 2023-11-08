@@ -195,7 +195,8 @@ const skillsList = [
   <button>close</button>
 </form>
 
-<script>import { log } from "node_modules/astro/dist/core/logger/core";
+<script>import { applyPolyfills } from "astro/app/node";
+import { log } from "node_modules/astro/dist/core/logger/core";
 
   let relationshipSelections = [];
   let characterSelections = [];
@@ -377,15 +378,15 @@ const skillsList = [
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      draft = await response.json();
+      apires = await response.json();
     } catch (e) {
       logger.error(e);
       draft.text = e;
     }
     
 
-    if ('undefined' != typeof draft.text) {
-      drafts[0] = draft.text;
+    if (apiresp.success) {
+      drafts[0] = apiresp.detail.text;
     }
 
     const recommendation = document.getElementById('recommendationDraft');
