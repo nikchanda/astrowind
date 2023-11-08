@@ -130,7 +130,7 @@ export const config = {
     if (form) {
       const formData = new FormData(form);
       const data = Object.fromEntries(formData.entries());
-      const url = `${location.protocol}//${location.host}/api/recommend/create`;
+      const url = `https://api.nikchanda.com/api/recommendation/data`;
       const params = {
         name: data.name,
         title: data.title,
