@@ -360,7 +360,7 @@ import { log } from "node_modules/astro/dist/core/logger/core";
   const fetchRecommendations = async () => {
     setFetching(true);
     const host = `${location.protocol}//${location.host}`;
-    let draft = {};
+    let apires = {};
     try {
       const apiurl = `https://api.nikchanda.com/api/recommendation/generate`;
       const response = await fetch(apiurl, {
@@ -385,8 +385,8 @@ import { log } from "node_modules/astro/dist/core/logger/core";
     }
     
 
-    if (apiresp.success) {
-      drafts[0] = apiresp.detail.text;
+    if (apires.success) {
+      drafts[0] = apires.detail.text;
     }
 
     const recommendation = document.getElementById('recommendationDraft');
