@@ -31,8 +31,9 @@ export const mobileClass = isMobile ? 'mobile' : 'desktop';
 </form>
 
 <script>
-  console.log('is mobile', ismobile);
-  const shareLink = ismobile
+  const confirmModal = document.getElementById('recommendation-confirmation');
+  const isMobile = confirmModal.classList.contains('mobile');
+  const shareLink = isMobile
     ? 'https://www.linkedin.com/in/nikchanda'
     : 'https://www.linkedin.com/in/nikchanda/edit/forms/recommendation/write/?profileFormEntryPoint=PROFILE_SECTION&profileUrn=urn%3Ali%3Afsd_profile%3AACoAAAAQowIBGVKfFY3lmtvgHAF1kyh4TSUlWmg&trackingId=o4FF%2FFuqRuytRxw7VW2mqg%3D%3D';
 
